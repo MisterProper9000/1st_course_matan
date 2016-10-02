@@ -1,0 +1,819 @@
+\documentclass{article}
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%
+% Packages/Macros %
+%%%%%%%%%%%%%%%%%%%
+\usepackage{mathrsfs}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{} 
+\rfoot{\normalsize\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\RomanNumeralCaps}[1]
+    {\MakeUppercase{\romannumeral #1}}
+
+\usepackage{amssymb,latexsym}  % Standard packages
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{MnSymbol}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amsthm}
+\usepackage{indentfirst}
+\usepackage{graphicx}%,vmargin}
+\usepackage{epigraph} %%% to make inspirational quotes.
+\usepackage[all]{xy} 
+\usepackage{hyperref}
+\usepackage{color}
+
+%\renewcommand{\baselinestretch}{1.5}
+%\sloppy
+%\usepackage{listings}
+%\lstset{numbers=left}
+%\setmarginsrb{2cm}{1.5cm}{1cm}{1.5cm}{0pt}{0mm}{0pt}{13mm}
+
+
+\newtheorem{Lemma}{Лемма}[section]
+\newtheorem{Proposition}{Предложение}[section]
+\newtheorem{Theorem}{Теорема}[section]
+\newtheorem{Corollary}{Следствие}[section]
+\newtheorem{Remark}{Замечание}[section]
+\newtheorem{Definition}{Определение}[section]
+\newtheorem{Designations}{Обозначение}[section]
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%% 
+%Сношение с оглавлением% 
+%%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage{tocloft} 
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \huge\bfseries\MakeUppercase} 
+\renewcommand{\cftbeforetoctitleskip}{-1em} 
+\renewcommand{\cftaftertoctitle}{\mbox{}\hfill \\ \mbox{}\hfill{\footnotesize Стр.}\vspace{-0.5em}} 
+%\renewcommand{\cftchapfont}{\normalsize\bfseries \MakeUppercase{\chaptername} } 
+\renewcommand{\cftsecfont}{\hspace{1pt}} 
+\renewcommand{\cftsubsecfont}{\hspace{1pt}} 
+%\renewcommand{\cftbeforechapskip}{1em} 
+\renewcommand{\cftparskip}{3mm} %определяет величину отступа в оглавлении
+\renewcommand{\cftdotsep}{1} %частота точек
+
+\setcounter{tocdepth}{3} 
+
+%%%%%%Переопределение chapter%%%%%% 
+\newcommand{\empline}{\mbox{}\newline} 
+\newcommand{\likechapterheading}[1]{ 
+\begin{center} 
+\textbf{\MakeUppercase{#1}} 
+\end{center} 
+\empline} 
+
+%%%%%%%Запиливание переопределённого chapter в оглавление%%%%%% 
+\makeatletter 
+\renewcommand{\@dotsep}{2} 
+\newcommand{\l@likechapter}[2]{{\bfseries\@dottedtocline{0}{0pt}{0pt}{#1}{#2}}} 
+\makeatother 
+\newcommand{\likechapter}[1]{ 
+\likechapterheading{#1} 
+\addcontentsline{toc}{likechapter}{\MakeUppercase{#1}}} 
+
+
+   
+%\renewcommand{\thelikesection}{(\roman{likesection})}
+%%%%%%%%%%%
+% Margins %
+%%%%%%%%%%%
+\addtolength{\textwidth}{0.7in}
+\textheight=630pt
+\addtolength{\evensidemargin}{-0.4in}
+\addtolength{\oddsidemargin}{-0.4in}
+\addtolength{\topmargin}{-0.4in}
+
+
+%%%%%%%%%%%%{\arabic{l@likesection}}
+% Document %
+%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%главы -- section*%%%%%%
+%%%%section -- subsection%%%%
+%subsection -- subsubsection%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def \newstr {\medskip \par \noindent} 
+
+
+
+\begin{document}
+\thispagestyle{empty}
+\begin{center} 
+\rule[0.5ex]{\linewidth}{2pt}\vspace*{-\baselineskip}\vspace*{3.2pt} 
+\rule[0.5ex]{\linewidth}{1pt}\\[\baselineskip] 
+{\huge \sc Конспект по математическому}\\[4mm] 
+{\huge \sc анализу для первого курса}\\[4mm] 
+\rule[0.5ex]{\linewidth}{1pt}\vspace*{-\baselineskip}\vspace{3.2pt} 
+\rule[0.5ex]{\linewidth}{2pt}\\ 
+\vspace{6.5mm} 
+ 
+\vspace{4mm} 
+{\large СПбПУ, Институт ИПММ\\ 
+\smallskip
+\smallskip
+\textsc{Бакалавриат "Математика и CS"}}\\ 
+
+\vspace{6.5mm} 
+{\large\textsc{Лекции Моисеева Алексея Александровича}}\\ 
+\vspace{5mm} 
+
+\vspace{20mm} 
+
+\end{center} 
+\author{Я}
+\begin{center}
+\vfill {\large\textsc{Санкт-Петербург}}\\ 
+ \today
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\ \\[4cm]
+
+%\begin{center}
+%\LARGE Конспект по математическому анализу за первый семестр бакалавриата "Математика и CS" %\quad СПбГПУ (лекции Моисеева Алексея Александровича)
+%\end{center}
+
+%\ \\[11cm]
+
+%by Плаксин Д.А.
+%\rm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\tableofcontents{}
+
+\newpage
+\pagestyle{plain}
+\begin{center}
+\large \bf Упоминаемая литература
+\end{center}
+
+\smallskip
+
+\begin{enumerate}
+\item А.П.Аксёнов "Математический анализ, часть 1"
+\item В.М.Зорич "Математический анализ, часть 1"
+\item Б.П.Демидович "Сборник задач и упражнений по математическому анализу"
+\end{enumerate}
+
+\newpage 
+\begin{center}
+
+\smallskip
+\smallskip
+\smallskip
+\smallskip
+
+\section{\LARGE{\bf Введение}}
+
+
+\end{center}
+
+\epigraph{\textit{Будет солнечно или мы пойдём на лекцию?}}
+{-- Моисеев А.А.}
+
+\subsection{Логическая символика}
+
+\begin{itemize}
+\item Операция $"\neg"$ называется отрицанием и, если $A$ -- суждение, то $\neg A$ есть отрицание этого суждения.
+\item Операция $"\vee"$ называется дизъюнкцией, и под $A \vee B$(\textit{читается $"A$ или $B"$}) подразумевается, что выполнено хоть одно из суждений $A$ или $B.$
+
+\item Операция $"\&"$ $("\wedge")$ называется конъюнкцией и $A\;\&\;B("A$ и $B")$ значит что имеют место быть оба высказывания $A$ и $B$ одновременно.
+
+\item Символ $"\Rightarrow"$ называется импликацией и запись $A \Rightarrow B$ изначает, что из высказывания $A$ следует высказывание $B,$ при этом $B$ есть необходимое условия для $A$, а $A$ является достаточным условием для $B.$
+
+\item Символ $"\Leftrightarrow"$ называется равносильностью и $A \Leftrightarrow B$ значит, что для высказывания $A$ необходимо и достаточно условие $B.$
+
+\item Квантор всеобщности $\forall$ читается как $"$для любого/для всякого$"$ и означает, соответственно, то же самое.
+
+\item Квантор существования $\exists$ читается как $"$существует/найдётся$"$.
+\end{itemize}
+
+{\bf Важные соотношения:}
+
+\begin{enumerate}
+\item $\neg(A\vee B) \Leftrightarrow \neg A \& \neg B$
+\item $\neg(A\;\&\; B)\Leftrightarrow \neg A\vee\neg B$
+\item $A \Rightarrow B  \Leftrightarrow \neg A\Rightarrow\neg B$
+\item $A\Rightarrow B  \Leftrightarrow\neg A\vee B$
+\item $\neg \left(\forall x\right) P(x) \Leftrightarrow \exists x \;\;\neg P(x)$
+\item $\neg \left(\exists x\right) P(x) \Leftrightarrow \forall x \;\;\neg P(x)$
+\end{enumerate}
+
+\subsection{Множества и операции над ними}
+
+\begin{Definition}
+Множество -- первичное понятие, обозначается заглавной буквой. Множества состоят из элементов(определённых и хорошо различимых [определение по Кантору]).
+\end{Definition}
+
+Если элемент $x$ принадлежит множеству $A,$ тогда это записывается как $x\in A$ и читается $"x$ принадлежит/из $A".$
+
+Аналогично $y\notin A.$
+
+Множество полностью определяется своими элементами. Два множества являются равными тогда и только тогда, когда все их элементы совпадают.\\ $A=B \Leftrightarrow \forall x\;\; x\in A \Rightarrow x\in B.$
+
+\begin{itemize}
+\item {\bf Отношение включения}\\
+$A\subseteq B$ \textit{ ("$A$ включено в $B$")} $\Leftrightarrow \forall x\;\; x\in A \Rightarrow x\in B.$
+
+\item {\bf Объединение множеств}\\
+Пусть $A, B$ -- множества. Тогда множество $C=\{x\mid x\in A \vee x\in B\}$ называется объединением множеств $A$ и $B$ и записывается $C=A\cup B.$
+
+\item {\bf Пересечение множеств}\\
+Пусть $A, B$ -- множества. Тогда множество $C=\{x\mid x\in A\;\&\; x\in B\}$ называется пересечением множеств $A$ и $B$ и обозначается $C=A\cap B.$\\
+\\Заметим, что если $A$ и $B$ не имеют общих элементов, то тогда их пересечение равно пустому множеству: $C=A\cap B=\varnothing.$
+\end{itemize}
+
+Операции объединения и пересечения коммутативны и ассоциативны и связаны между собой дистрибутивными законами.
+$$\left(A\cup B\right)\cap C = \left(A\cap B\right)\cup\left(B\cap C\right)$$
+$$\left(A\cap B\right)\cup C = \left(A\cup B\right)\cap\left(B\cup C\right)$$
+\begin{proof}
+Докажем первое равенство. \\
+Покажем, что если $x$ принадлежит $\left(A\cup B\right)\cap C$, то $x$ принадлежит $\left(A\cap B\right)\cup\left(B\cap C\right).$ Пусть $x\in \left(A\cup B\right)\cap C,$ тогда $x\in \left(A \cup B\right) \;\&\;x\in C$, отсюда $\left( x\in A \vee x\in B\right) \;\&\; x\in C = 
+\\=\left(x\in A \;\&\; x\in C\right) \vee \left(x\in B \;\&\; x\in C\right) = \left(A\cap B\right)\cup\left(B\cap C\right),$ по дистрибутивному свойству операций $\vee,\&.$\\
+Второе неравенство доказывается аналогично.
+\end{proof}
+\subparagraph{Кое-какие свойства}
+\begin{enumerate}
+\item $A\cup B = A \Leftrightarrow B\subseteq A$
+\begin{proof}
+$\Rightarrow:$
+\\Возьмём элемент из $B.$ Докажем, что он принадлежит $A.$ Пусть $x\notin A.$ По условию $A\cup B = \{x\mid x\in A \vee x\in B\} = \{x\mid x\in A\} = A,$ то есть $x\in A,$ противоречие.\\
+$\Leftarrow:$\\
+Докажем равенство двумя включениями:
+
+$\subseteq:$
+
+Возьмём $x\in A\cup B.$ По определению объеднинения $x$ точно лежит в одном из двух множеств. Если он попал в $A$, то всё доказано. Если он попал в $B$, то, так как $B\subseteq A,$ то $x\in A.$ Таким образом $A\cup B\subseteq A.$
+
+$\supseteq:$
+
+Возьмём $x\in A,$ докажем, что $x$ точно будет содержаться в объединении $A\cup B.$ Очевидно, что это выполнено.
+\end{proof}
+\item $A\cap B = A \Leftrightarrow A\subseteq B$
+\begin{proof}
+$\Rightarrow:$
+
+Возьмём $x\in A$ и докажем, что он принадлежит $B.$ Так как их того, что $x\in A \; \& \; x\in B$ следует, что $x\in A,$ то для любого $x\in A$ следует то, что $x\in B,$ тем самым, $A\subset B.$
+
+$\Leftarrow:$
+
+Так же докажем двумя включениями:
+
+$\subseteq:$
+
+Возьмём $x\in A\cap B \Rightarrow x\in A \; \& \; x\in B,$ т.к. $A\subseteq B,$ то $x\in A.$
+
+$\supseteq:$
+
+Возьмём $x\in A,$ так как $A\subseteq B,$ то $x\in A \; \& \; x\in B \Rightarrow x\in A\cap B.$
+\end{proof}
+\end{enumerate}
+
+\begin{itemize}
+\item {\bf Разность множеств}
+\\$A\setminus B = \{x\mid x\in A \;\&\; x\notin B\}$
+\\Если $A\subseteq M,$ тогда $M\setminus A$ называется дополнением $A$ в $M$ и обозначается $cA.$\\
+\\Операция дополнения связана с операциями пересечения и объединения следующими соотношениями, называющимися формулами двойственности де Моргана: 
+$$c\left(A\cup B\right)=cA\cap cB$$
+$$c\left(A\cap B\right)=cA\cup cB$$
+
+\begin{proof}
+Докажем первое равенство. 
+\begin{eqnarray}
+x\in c\left(A\cup B\right) \Leftrightarrow x\notin A\cup B \Leftrightarrow \neg\left(x\in A \vee x\in B\right) \Leftrightarrow x\notin A \;\&\; x\notin B \Leftrightarrow x\in cA \;\&\; x\in cB \Leftrightarrow \nonumber \\ 
+\Leftrightarrow x\in cA\cap cB.\nonumber
+\end{eqnarray}
+Второе неравенство доказывается аналогично.
+\end{proof}
+
+\item {\bf Декартово произведение множеств(прямое произведение)}
+\\Пусть $X$ и $Y$ непустые множества, тогда их декартово произведение определяется следующим образом: $X\times Y = \{(x,y)\mid x\in X, y\in Y\},$ если хоть одно из множеств пусто, тогда всё декартово произведение будет считаться пустым.
+
+\begin{Remark}
+Таким образом плоскость есть декартово произведение осей.
+\end{Remark}
+\end{itemize}
+
+\subsection{Отображения(Функции)}
+
+\begin{Definition}
+Пусть $X$ и $Y$ -- не пустые множества, тогда правило-закон $f,$ который каждому $x\in X$ однозначно сопостовляет некий $y\in Y,$ называется отображением(функцией) определённой на $X$ со значениями в $Y$ и обозначается: $f:X \rightarrow Y$ или $X \xrightarrow{\text{f}}Y$
+\end{Definition}
+
+Элемент $y\in Y,$ соответсвующий $x\in X$ называется значением отображения $f$ в точке $x$ и записывается: $y=f(x).$
+
+Отображение $f$ называется функцией, когда $Y$ есть числовое множество.
+
+Если имеется функция $f:X \rightarrow Y,$ то тогда множество $X$ называется областью определения, а $Y$ областью прибытия функции $f.$
+
+\subparagraph{Примеры:}
+\begin{enumerate}
+\item Пусть область определения совпадает с областью прибытия и равна множеству вещественных чисел $X=Y=\mathbb{R},$ и функцию $f:X \rightarrow Y.$ Как видно из примера, область прибытия не всегда совпадает с множеством значений.
+\item Проектирование декартова произведения множеств.
+\\Пусть множество $X$ является декартовым произведением двух множеств $X_1$ и $X_2:$ $X=X_1 \times X_2.$ Рассмотрим две функции: $$pr_1:X_1\times X_2 \rightarrow X_1$$
+$$(x_1,x_2) \rightarrow x_1$$
+и $$pr_2:X_1\times X_2 \rightarrow X_2$$
+$$(x_1,x_2) \rightarrow x_2,$$
+тогда $pr_1$ называется проекцией множества $X_1\times X_2$ на $X_1$, а $pr_2$, соответственно, проекцией на $X_2.$
+\item Пусть $X$ -- множество, тогда $\mathcal{P}(X)$ является множеством всех подмножеств(универсумом) множества $X.$
+
+Можно рассмотреть следующее отображение: $$f:\mathcal{P}(X) \rightarrow \mathcal{P}(X),$$ которое множеству $A\subseteq X$ сопостоставляет его дополнение в $X:$ $X\setminus A.$
+\end{enumerate}
+
+\begin{Definition}
+Пусть имеется функция $f:X \rightarrow Y,$ тогда {\bf сужением функции} $f$ на некое подмножество $E\subseteq X$ называется функция $g:E\rightarrow Y$ такая, что $g(x) = f(x), \forall x\in E$ и обозначается как $f|_{E}.$
+\end{Definition}
+
+\begin{Definition}
+{\bf Образом множества} $A\subseteq X$ при отображении $f:X \rightarrow Y$ называют такое множество $f(A) = \{y\in Y\mid \exists x\in A: f(x)=y\} = \{f(x)\mid x\in A\}.$
+\end{Definition}
+
+\begin{Definition}
+{\bf Праобразом множества} $B\subseteq Y$ при отображении $f:X\rightarrow Y$ называется множество $f^{-1}(B) = \{x\in X\mid f(x)\in B\}.$
+\end{Definition}
+
+\begin{Remark}
+$$f^{-1}\left(f(A)\right)\supseteq  A$$
+$$f\left(f^{-1}(B)\right) \subseteq B$$
+\end{Remark}
+
+\subparagraph{Инъекция и Сюръекция}
+\begin{Definition}
+Имеется функция $f:X \rightarrow Y.$ Если $f(X)=Y,$ то $f$ -- сюръекция.
+\end{Definition}
+\begin{Definition}
+Если имеется функция $f:X \rightarrow Y$ и $\forall x_1, x_2 \in X \; x_1 \neq x_2 \Rightarrow f(x_1)\neq f(x_2),$ то тогда функция $f$ называется инъекцией.
+\end{Definition}
+\begin{Definition}
+$f$ -- биекция, если $f$ сюръекция и инъекция.
+\end{Definition} 
+
+\subparagraph{Композиция отображений}
+Пусть имеются две функции: $f:X \rightarrow Y$ и $g:Y \rightarrow Z.$
+Определим отображение $h:X \rightarrow Z$ следующим образом: $\forall x\in X \; h(x)=g(f(x)),$ тогда $h=g\circ f$ и называется композицией $f$ и $g.$
+
+
+\subparagraph{Обратое отображение}
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\subparagraph{График отображения}
+
+
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\subsection{Вещественные  числа}
+$\mathbb{R}$ -- множество вещественных чисел.
+
+Аксиоматическое определение множества вещественных чисел:\\
+
+{\bf \RomanNumeralCaps{1}.} в $\mathbb{R}$ введена операция сложения: $(x,y) \xrightarrow{\text{+}} z=x+y.$
+\par Свойства действия сложения:
+\begin{enumerate}
+\item коммутативность \quad  $x+y=y+x,$ $\forall x, y ;$
+\item ассоциативность \quad  $(x+y)+z=x+(y+z)=x+y+z,$ $\forall x, y, z ;$
+\item существование нейтрального элемента (нуля) \quad $\forall x\;\;$ $x+0=x;$
+\item существование противаположного элемента \quad $\forall x\;\;$  $\exists ! -x\;\;$ $x+(-x)=0.$
+\end{enumerate}
+
+{\bf \RomanNumeralCaps{2}.} В $\mathbb{R}$ введено умножение. $\cdot:(x,y)\rightarrow z=x\cdot y.$
+\begin{enumerate}
+\item коммутативность \quad $xy=yx;$
+\item ассоциативность \quad $x(yz)=(xy)z=xyz;$
+\item существование нейтрального элемента (единицы) \quad $1x=x;$
+\item существование обратного элемента \quad $\forall x \; \exists x^{-1}: \; xx^{-1}=1.$
+\end{enumerate}
+
+{\bf \RomanNumeralCaps{3}.} Дистрибутивная связь. $(x+y)z=xz+yz.$
+
+{\bf \RomanNumeralCaps{4}.} Отношение порядка. 
+
+Некоторые пары $x,y\in\mathbb{R}$ удовлетворяют условию $x\leq y.$
+
+Свойства отношения $\leq:$
+\begin{enumerate}
+\item рефлексивность \quad $x\leq x;$
+\item антисимметричность \quad $x\leq y \& y\leq x \Rightarrow x=y;$
+\item транзитивность \quad $x\leq y \& y\leq z \Rightarrow x\leq z.$
+\end{enumerate}
+-- общие свойства порядка.
+
+{\bf \RomanNumeralCaps{5}.} Связь операций и порядка.
+
+$x\leq y \Rightarrow x+z\leq x+z;$
+
+$x\leq y \Rightarrow xz\leq yz.$
+
+{\bf \RomanNumeralCaps{6}.} Аксиома полноты.
+
+Пусть $X, Y\subset \mathbb{R}$ и $\forall x\in X \; \forall y\in Y \; x\leq y.$ Тогда существует $c\in\mathbb{R}: \; \forall x\in X \; \forall y\in Y \; x\leq c\leq y.$
+
+\begin{Definition}
+
+\end{Definition}
+
+
+\subsection{Промежутки в множестве $\mathbb{R}$}
+Промежуток есть множество одного из следующих типов:
+\begin{enumerate}
+\item $[a,b] =\{x\in\mathbb{R}\mid a\leq x\leq b\}$ -- отрезок
+\item $(a,b) =\{x\in\mathbb{R}\mid a< x< b\}$ -- интервал
+\item $[a,b) =\{x\in\mathbb{R}\mid a\leq x< b\}$ -- полуинтервал
+\item $(a,b] =\{x\in\mathbb{R}\mid a< x\leq b\}$ -- полуинтервал
+\item $[a, +\infty] =\{x\in\mathbb{R}\mid x\geq a\}$ -- луч
+\item $[a,+\infty) =\{x\in\mathbb{R}\mid x>a\}$ -- луч
+\item $[-\infty,b] =\{x\in\mathbb{R}\mid x\leq a\}$ -- луч
+\item $[-\infty,b) =\{x\in\mathbb{R}\mid x<a\}$ -- луч
+\item $[-\infty,+\infty) =\mathbb{R}$ 
+\end{enumerate}
+\subsection{Геометрическая интерпретация}
+$\mathbb{R}$ изображается прямой с отмеченными точками $0$ и $1.$
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\subsection{Абсолютная величина вещественного числа}
+
+\subsection{Натуральные числа}
+
+\subsection{Целые числа}
+
+\subsection{Рациональные числа}
+
+\begin{Definition}
+Множество рациональных чисел обозначается как $\mathbb{Q}$ и состоит из элементов вида $\frac{m}{n},$ где $n\in \mathbb{N}$ и $m\in\mathbb{Z}.$
+\end{Definition}
+
+\begin{Definition}
+Множество $X$ называется плотным во множестве $Y$ \quad $\Leftrightarrow$ \quad $\Leftrightarrow$ $\forall \alpha, \beta \in \mathbb{Y}:$ $\alpha<\beta \quad \exists x\in X: x\in(\alpha,\beta.)$
+\end{Definition}
+
+\begin{Theorem}
+$\mathbb{Q}$ плотно в $\mathbb{R}.$
+\end{Theorem}
+\begin{proof}
+Возьмём $\varepsilon = \beta - \alpha > 0.$ По принципу Архимеда $\exists n\in \mathbb{N}: \; \frac{1}{n}<\varepsilon$ и $\exists m\in\mathbb{Z}: \; \frac{m}{n} >\alpha.$ Среди таких чисел выберем наименьшее $m$ такое, что $\frac{m}{n}>\alpha,$ тогда $\frac{m-1}{n}\leq \alpha.$ Обозначая $x=\frac{m}{n}$ получаем, что $X\in(\alpha,\beta).$ Ну, действительно, известно, что $\frac{m-1}{n}<\alpha,$ тогда $\frac{m}{n}\leq\alpha+\frac{1}{n},$ то есть $x\leq \alpha+
+\frac{1}{n}<\alpha+\varepsilon=\beta,$ откуда $\alpha < \beta.$
+\end{proof}
+
+\begin{Proposition}
+Любое вещественное число можно с любой степенью точности приблизить рациональными числами. 
+\end{Proposition}
+\begin{proof}
+Возьмём $x\in(0,1].$ Среди десятичных дробей: $0.1, 0.2,\ldots, 0.9$ выберем наибольшую из тех, что меньше $x.$ Пусть эта дробь равна $0.\alpha_1.$ Теперь возьмём $x_1$ -- меньшее $x,$ но $x_1+\frac{1}{10}>x.$
+\smallskip
+
+Среди дробей: $0.\alpha_1 1, 0.\alpha_1 2,\ldots, 0.\alpha_1 9$ выберем $x_2=0.\alpha_1\alpha_2: x_2<x<x_2+\frac{1}{100}.$ 
+\smallskip
+
+Таким образом получаем последовательность десятичных дробей $x_n=0.\alpha_1\alpha_2\ldots\alpha_n: x_n<x<x_n+\frac{1}{10^n}.$ Тогда бесконечная дробь $x=0.\alpha_1\alpha_2\ldots\alpha_n\ldots$ представляет вещественное число $x.$
+\end{proof}
+
+В $\mathbb{Q}$ выполнены все арифетические действия.
+\subsection{Мощность}
+\begin{Definition}
+Множества $X$ и $Y$ равномощны, если $\exists f:X\rightarrow Y$ -- инъективное отображение. Записывается как $X\sim Y; \mid X\mid=\mid Y\mid$ или как $cardX=cardY.$ (\textit{кардинальное число $X$})
+\end{Definition}
+
+Заметим, что если $X\subseteq Y,$ то $\mid X\mid \leq\mid Y\mid.$
+
+\begin{Proposition}
+Множество натуральных чисел $\mathbb{N}$ равномощно множеству чётных чисел $\mathbb{N}_{2n}.$
+\end{Proposition}
+\begin{proof}
+Ну, действительно, возьмём функцию $f(n)=2n.$ Легко понять, что $f$ биекция, значит, по определению, множества равномощны.
+\end{proof}
+
+\begin{Theorem}[Шредер-Бернштейн]
+Если $\mid X\mid\leq\mid Y\mid$ и $\mid Y\mid\leq X\mid,$ то $\mid X\mid = \mid Y\mid.$
+\end{Theorem} 
+
+Любые два множества сравнимы по мощности: $\mid X\mid<\mid Y\mid\vee \mid X\mid=\mid Y\mid\vee \mid X\mid>\mid Y\mid.$ 
+
+\begin{Theorem}[Кантора]
+Пусть $X$ -- множество, $\mathcal{P}(X)$ -- множество всех подмножеств $X.$ Тогда $\mid\mathcal{P}(X)\mid >\mid X\mid.$
+\end{Theorem}
+\begin{proof}
+Рассмотрим отображение $X\rightarrow\mathcal{P}(X)$ такое, что $x\in X \rightarrow\{x\}\in\mathcal{P}(X)$ -- инъекция, значит $\mathcal{P}(X)\mid\geq\mid X\mid.$ Теперь покажем, что $\mid \mathbb{P}(X)\mid \neq\mid X\mid:$\\
+
+Предположим, что $\mathcal{P}(X)\mid=\mid X\mid,$ тогда $f:X \rightarrow \mathcal{P}(X)$ -- сюръекция, тогда $\forall y \in Y \; Y=f(y)\in\mathcal{P}(X), Y\subseteq X.$ Рассмотрим $Y_0=\{y\in X\mid y\notin f(y)\},$  $Y_0\subseteq X,$ значит $Y_0\in\mathcal{P}(X).$ Так как $f$ сюръекция, то $\exists y_0 \in Y_0: \; f(y_0)=Y_0.$\\
+
+Будет ли верно, что $y_0\in Y_0?$ Ну, проверим: пусть $y_0\in Y_0,$ следовательно $y_0 \neq f(y_0)=Y$ -- противоречие, значит $y_0 \notin Y_0,$ но $Y_0 = f(y_0),$ откуда $y_0\in Y_0$ -- противоречие, значит $f$ не сюръекция.
+\end{proof}
+\smallskip
+\smallskip
+\subsubsection{Конечное множество}
+Пусть $n\in\mathbb{N},$ тогда $\mathbb{N}_n=\{m\in\mathbb{N}\mid m\leq n\}=\{1, 2,\ldots, n\}$ -- отрезок натурального ряда.
+\begin{Definition}
+Если $X\sim \mathbb{N}_n,$ то $X$ называется конечным множеством и $n=card X$ -- число элементов $X.$
+\end{Definition}
+
+Если $n\neq m,$ то $\mid\mathbb{N}_n\neq\mathbb{N}_m.$
+
+\begin{Proposition}
+Множество $X$ конечно $\Leftrightarrow$ $X$ не равномощно своей правильной части$.$ $\mid X\mid\neq\mid Y\mid$, при $Y\subseteq X$ и $Y\neq Y.$
+\end{Proposition}
+
+Рассмотрим отображение из $\mathbb{N}$ в $\mathbb{N}\setminus\{1\}$ такое, что $n \rightarrow n+1.$ Так как отображение биективно, то множество $\mathbb{N}\setminus\{1\}$ не конечно.
+\begin{Definition}
+Бесконечное множество -- не конечное множество.
+\end{Definition}
+
+\subsubsection{Счётное множество}
+Пусть $X$ бесконечное множество, тогда, если $\forall n \; \exists x_1,\ldots, x_n \in X$ -- попарно различны, то $\exists x_1,\ldots, x_n, x_{n+1} \in X$ -- попарно различны.\\
+
+Тогда $x_1,\ldots$ образуют множество, равновощное множеству натуральных чисел. Таким образом $\mathbb{N}$ самое маленькое бесконечное множество.
+
+\begin{Definition}
+Если множество $X$ счётно, то пишут, что его мощность $cardX=\aleph_0$ (\textit{Алеф ноль})$.$
+\end{Definition}
+
+Если множество $X$ конечно или счётно, то $X$ называется не более чем счётным множеством.
+
+Пусть $X$ счётно, тогда $\mathcal{X}$ несчётно.
+
+\begin{Proposition}
+$\mathbb{Z}$ -- счётно.
+\end{Proposition}
+\begin{proof}
+Определим биективное отображение из $\mathbb{N}$ в $\mathbb{Z}$ следующим образом: 
+\begin{equation*}
+f(x) = 
+ \begin{cases}
+   \frac{n}{2}, &\text{ $n = 0(mod \; 2) $}\\
+   \frac{n-1}{2}, &\text{ $n = 1(mod \; 2)$}
+ \end{cases}
+\end{equation*}
+\end{proof}
+
+\begin{Proposition}
+$\mathbb{N^2}\sim\mathbb{N}$ 
+\end{Proposition}
+\begin{proof}
+Ну, действительно, запишем сначала все пары натуральных чисел с первым элементом равным $1$, ниже все пары, начинающиеся с $2$ и так далее. Начнём нумеровать пары следующим образом:
+$$(1,1) - 1 \;\; (1,2) - 2 \;\; (1,3) - 6 \ldots$$
+$$(2,1) - 3 \;\; (2,2) - 5 \;\; (2,3) - 7 \ldots$$
+$$(3,1) - 4 \;\; (3,2) - 8 \;\; (3,3) - 12 \ldots$$
+$$\vdots \quad\quad\quad\quad\vdots \quad\quad\quad\quad\vdots$$
+Так как каждый раз диагонали будут конечными, то удастся занумеровать все пары.
+\end{proof}
+
+\begin{Proposition}
+$\mathbb{Q}$ счётно.
+\end{Proposition}
+\begin{proof}
+Очевидно, что $\mid\mathbb{Q}\mid \geq\mid\mathbb{N}\mid.$ Докажем равенство.\\
+Докажем, что $\mid\mathbb{Q}\mid \leq\mid\mathbb{N}\mid:$ \\
+Любое $x\in\mathbb{Q}$ представляется в виде несократимой дроби $\frac{m}{n}, \; m\in\mathbb{Z}, \; n\in\mathbb{N}.$ Тогда запишем $card\mathbb{Q}\leq card\mathbb{Z}\times\mathbb{N} = card\mathbb{N}\times\mathbb{N}=card\mathbb{N}.$\\
+Отсюда имеем, что $\mid\mathbb{Q}\mid \geq\mid\mathbb{N}\mid$ и $\mid\mathbb{Q}\mid \leq\mid\mathbb{N}\mid,$ следовательно $\mid\mathbb{Q}\mid =\mid\mathbb{N}\mid$
+\end{proof}
+
+\subsubsection{Мощность континуум}
+\begin{Proposition}
+Множество вещественных чисел $\mathbb{R}$ и $\mathcal{P}(\mathbb{N})$ равномощны.
+\end{Proposition}
+\begin{proof}
+\begin{enumerate}
+\item $x\in\mathbb{R} \longmapsto (-\infty, x)\cap\mathbb{Q} \subset \mathbb{Q}.$ Тем самым определено инъективное отображение множества $\mathbb{R} \rightarrow\mathcal{P}(\mathbb{Q}),$ поэтому $card\mathbb{R}\leq card\mathcal{P}(\mathbb{Q})=card\mathbb{N}.$
+\item Рассмотрим некое подмножество натуральных чисел $A\subset\mathbb{N}.$ Построим бесконечные десятичные дроби $x=0.\alpha_1\alpha_2\cdots$ по следующему правилу:
+\begin{equation*}
+\alpha_n = 
+ \begin{cases}
+   1, &\text{ $n\in A $}\\
+   0, &\text{ $n\notin A$}
+ \end{cases}
+\end{equation*}
+Таким образом определена индукция $\mathcal{P}(\mathbb{N}) \rightarrow [0, 1),$ 
+\end{enumerate} 
+значит $$card\mathcal{P}(\mathbb{N})\leq card\mathbb{R} \Rightarrow card\mathbb{R}= card\mathcal{P}(\mathbb{N}).$$
+\end{proof}
+
+\begin{Definition}
+Если $X\sim\mathcal{P}(\mathbb{N})\sim\mathbb{R},$ то говорят, что $x$ имеет мощность континуум и обозначают $cardX=c=2^{\aleph_0}.$
+\end{Definition}
+
+\newpage
+
+\begin{center}
+\section{\LARGE{\bf Предел последовательности}}
+\end{center}
+\epigraph{\textit{Предел один, а у нас перерыв.}}
+{-- Моисеев А.А.}
+
+
+\begin{Definition}
+Числовая последовательность это отображение $\mathbb{N} \rightarrow \mathbb{R}.$ Для значения этого отображения (последовательности) можно использовать запись $x_n;$ сама последовательность обозначается, как $\{x_n\}_{n=1}^{\infty}.$
+\end{Definition} 
+
+Пусть $\{x_n\}_{n=1}^{\infty}$ -- последовательность, тогда множеством значений последовательности будет $X=\{x\in\mathbb{R}\mid\exists n\in\mathbb{N} \; x=x_n\}.$
+
+Последовательность называется ограниченной сверху (снизу), если соответсвующим свойством обладает её множество значений: 
+
+Последовательность $\{x_n\}_{n=1}^{\infty}$ ограничена, если $\exists m, M \; \forall n\in\mathbb{N} \; m\leq x_n\leq M$ или $\exists M: \; \forall n\in\mathbb{N} \; \mid x_n\mid<M.$
+
+\paragraph{Пример}
+\begin{enumerate}
+\item $x_n=\frac{1}{n}$ --ограничена, ведь $0\leq\frac{1}{n}\leq1.$
+\item $x_n=n^2$ -- ограничена снизу: $x_n\geq 0,$ но не сверху.
+\end{enumerate}
+
+\begin{Definition}[Предел последовательности]
+Число $a\in\mathbb{R}$ называется пределом последовательности $\{x_n\}_{n=1}^{\infty},$ если для любого положительного числа можно подобрать такой номер $N,$ что разность всякого члена последовательности с большим номером и $a$ будет по модулю меньше этого положительного числа: $$\forall \varepsilon>0 ;\ \exists N: \; \forall n>N \; \mid x_n-a\mid<\varepsilon.$$
+\end{Definition}
+
+Последовательность, имеющая предел, называется сходящейся.
+Последовательность, не имеющая предела, называется расходящейся.
+Третьего не дано.
+
+\paragraph{Пример}
+$\frac{1}{n} \rightarrow 0, n\rightarrow \infty$
+
+Действительно, возьмём $N=\left[\frac{1}{\varepsilon}\right] +1.$ Пусть $n>N,$ тогда $n>\left[\frac{1}{n}\right], \; n>\frac{1}{\varepsilon}, \; \frac{1}{n}<\varepsilon.$
+
+\begin{Definition}[Окрестность]
+\begin{enumerate}
+\item Возьмём точку $a\in\mathbb{R},$ тогда правильной $\varepsilon$ окрестностью точки $a$ называется $O_{\varepsilon}(a)=(a-\varepsilon, a+\varepsilon) = \{x\in\mathbb{R}\mid \; \mid x-a\mid<\varepsilon\}.$ Иногда можно окрестность обозначать как $V,$ дело вкуса.
+\item $O\in\mathbb{R}$ над окрестность точки $a,$ если $\exists\varepsilon>0: \; O_{\varepsilon}(a)\subset O.$
+\end{enumerate}
+\end{Definition}
+
+\paragraph{Пара свойств.}
+
+Если $O_1 \subset O_2$ и $V_1$ окрестность точки $a$, то $V_2$ тоже окретсность точки $a.$
+
+Если $O_1$ и $O_2$ окрестности точки $a,$ то $V_1\cap V_2$ тоже окрестность точки $a.$
+
+\begin{Definition}
+Последовательность $x_n \rightarrow a, n\rightarrow \infty,$ если $\forall O$ -- окрестность точки $a\;$  $\exists N, \; \forall n>N \Rightarrow x_n\in O.$
+\end{Definition}
+
+\subparagraph{Простейшие свойста пределов}
+\begin{enumerate}
+\item Предел стационарной последовательности. 
+
+$\{x_n\}_{n=1}^{\infty}, \; x_n=a.$ Пусть $n=n_0+1, n_0+2,\ldots,$ тогда $x_n\rightarrow a.$ Действительно, $\forall\varepsilon \; N=n_0 \; n>N \; x_n=a \; \mid x_n-a\mid=0<\varepsilon.$
+\item Единственность предела:  $x_n\rightarrow a$ и $x_n\rightarrow b \; \Rightarrow a=b.$
+\begin{proof}
+Пусть $a\neq b,$ тогда рассмотрим $O_a$ и $O_b$ -- окрестности точек $a$ и $b.$ Возьмём точку $c=\frac{a+b}{2}$ и окрестности $O_a = (-\infty, c)$ и $O_b = (c, \infty).$ Тогда, так как $a$ и $b$ пределы, найдутся такие $N_1, N_2,$ что при любом $n>N_1$ и $n>N_2$ член последовательности $x_n$ будет принадлежать одновременно непересекающимся множествам $O_a$ и $O_b.$ Противоречие.
+\end{proof}
+\item Ограниченность сходящейся последовательности. Если $\{x_n\}_{n=1}^{\infty}$ сходится, то $\{x_n\}_{n=1}^{\infty}$ ограничена.
+\begin{proof}
+Пусть $x_n \rightarrow a, n\rightarrow\infty.$ Возьмём $\varepsilon=1,$ тогда существует $n_0: \; \mid x_n-a\mid<1,$ при $n=n_0+1, n_0+2,\ldots$
+
+При таких $n\; \mid x_n\mid\leq\mid a\mid+1.$ Возьмём число $M=max\{\mid x_1\mid, \mid x_2\mid,\ldots,\mid x_0\mid, \mid a\mid+1\}.$
+
+Теперь $\forall n \; \mid x_n\mid<M$
+
+если $n\leq n_0,$ то $\mid x_n\mid\leq M,$ так как $M$ максимум таких чисел.
+
+если $n>n_0,$ то $\mid x_n\mid<\mid a\mid+1\leq M.$
+\end{proof}
+
+Однако может случиться так, что последовательность ограничена и при этом расходится: $x_n=(-1)^{n}.$
+
+\item Подпоследовательность.
+
+\begin{Definition}
+Пусть $\{x_n\}_{n=1}^{\infty}$ -- числовая последовательность. Рассмотрим $\{n_k\}_{k=1}^{\infty}$ -- строго возрастающая последовательность натуральных чисел. Построим последовательность $\{y_k\}_{k=1}^{\infty}: \; y_k=x_{n_k}, k=1, 2,\ldots$ Тогда $\{y_k\}$ -- подпоследовательность $\{y_n\}.$
+\end{Definition}
+\end{enumerate}
+
+\subparagraph{Пример}
+Имеется последовательность $\{x_n\}_{n=1}^{\infty}.$
+\begin{enumerate}
+\item Возьмём $n_k=n_0+k$ и построим подпоследовательность $y_k=x_{n_0+k}.$ Таким образом мы отбросили первые $n_0$ элементов последовательности.
+\item $n_k=x_{2k}$ -- только чётные элементы.
+
+$n_k=x_{2k-1}$ -- только нечётные элементы.
+\end{enumerate}
+
+\begin{Proposition}
+Подпоследовательность $\{y_k\}$ сходящейся последовательности $\{x_n\}$ сходится к тому же пределу, что и сама последовательность.
+\end{Proposition}
+\begin{proof}
+Докажем, что если $\{x_n\}\rightarrow a,$ то и $y_k\rightarrow a (y_k=x_{n_k}.$
+
+Если $n_k$  строго возрастающая последовательность, то $n_k\geq k.$ Так как $\{x_n\}$ сходится, то $\forall\varepsilon>0 \; \exists N: \; \forall n>N \Rightarrow\mid x_n-a\mid<\varepsilon.$ Пусть $k>N,$ тогда $n_k\geq k>N \Rightarrow n_k>N,$ значит $\mid x_{n_k}-a\mid<\varepsilon \; x_{n_k}=y_k \Rightarrow \mid u_n-a\mid<\varepsilon,$ то есть $y_k \rightarrow a, n\rightarrow\infty.$
+\end{proof}
+
+\begin{Remark}
+Расходящаяся последовательность может иметь сходящуюся подпоследовательность:
+
+$x_n=(-1)^k: \; x_{2k}=1$ и $x_{2k-1}=-1.$
+\end{Remark}
+
+\subsection{Сходимость и арифметические операции}
+\begin{Theorem}[Предел суммы]
+
+Пусть имеются сходящиеся подпоследовательности $\{x_n\}$ и $\{y_n\}: \; x_n\rightarrow a$ и $y_n\rightarrow b,$ тогда последовательность $\{z_n\}=x_n+y_n$ сходится к $a+b.$
+\end{Theorem}
+\begin{proof}
+$x_n\rightarrow a \Rightarrow \forall \frac{\varepsilon}{2}>0 \; \exists N_1: \; \forall n>N_1 \; \mid x_n-a\mid<\frac{\varepsilon}{2}.$
+
+$y_n\rightarrow a \Rightarrow \forall \frac{\varepsilon}{2}>0 \; \exists N_2: \; \forall n>N_2 \; \mid y_n-b\mid<\frac{\varepsilon}{2}.$
+
+Возьмём $n>max(N_1, N_2),$ сложим эти два неравенства и воспользуемся неравенством треугольника:
+
+$\varepsilon=\frac{\varepsilon}{2}+\frac{\varepsilon}{2}>\mid x_n-a\mid+\mid y_n-b\mid \geq \mid x_n+y_n-(a+b)\mid = \mid z_n-(a+b),$ откуда $z_n \rightarrow a+b.$
+\end{proof}
+
+\begin{Theorem}[Предел произведения]
+
+\end{Theorem}
+\begin{proof}
+
+\end{proof}
+
+\begin{Theorem}[Предел частного]
+
+\end{Theorem}
+\begin{proof}
+
+\end{proof}
+
+\subsection{Сходимость и неравенства}
+\begin{Theorem}
+
+\end{Theorem}
+\begin{proof}
+
+\end{proof}
+
+\begin{Theorem}[Предельный переход в неравенстве]
+
+\end{Theorem}
+\begin{proof}
+
+\end{proof}
+
+\begin{Remark}
+
+\end{Remark}
+
+\begin{Remark}
+
+\end{Remark}
+
+\begin{Theorem}[Теорема о двух милиционерах]
+
+\end{Theorem}
+\begin{proof}
+
+\end{proof}
+
+\subsection{Бесконечно малые последовательности}
+\begin{Definition}
+Последовательность $\{\alpha_n\}$ называется бесконечно малой, если $\alpha_n \rightarrow 0.$ То есть $\exists N: \; \forall n>N \mid\alpha_n\mid<\varepsilon.$
+\end{Definition}
+
+\begin{Theorem}
+Сумма бесконечно малых последовательностей является бесконечно малая последовательность.
+\end{Theorem}
+\begin{proof}
+Очевидно, если взять $\varepsilon=\frac{\varepsilon}{2}.$
+\end{proof}
+
+\begin{Theorem}
+Произведение бесконечно малой и ограниченной -- бесконечно малая.
+\end{Theorem}
+\begin{proof}
+Пусть $\{\alpha_n\}$ -- бесконечно малая и $\{x_n\}$ ограниченная. $\{x_n\}$ ограничена, значит $\exists M: \; \mid x_n\mid\leq M, \forall n\in N.$ Из бесконечной малости $\{\alpha_n\}$ следует, что $\forall\varepsilon>0 \; \exists N: \; \forall n>N \; \mid\alpha_n\mid<\frac{\varepsilon}{M},$ то есть $\mid\omega_n\mid=\mid\alpha_n\mid\mid x_n\mid\leq\mid\alpha_n\mid\cdot M<\frac{\varepsilon}{M}\cdot M=\varepsilon \Rightarrow \omega_n\rightarrow 0, n\rightarrow\infty.$
+\end{proof}
+\subsubsection{Описание сходимости на языке бесконечно малых}
+$x_n \rightarrow a, n\rightarrow\infty \Leftrightarrow \alpha_n=x_n-a$ -- бесконечно малая.
+
+\subsection{Бесконечно большие последовательности}
+
+\subsection{Расширенная числовая прямая}
+$\overline{\mathbb{R}}=\mathbb{R}\cup\{-\infty, +\infty\}$ -- Риманова прямая.
+
+$\forall x\in\mathbb{R} \; -\infty<x<+\infty$
+
+Над $\pm\infty$ выполняют ряд операций (с некоторыми ограничениями).
+
+\subsection{Сходимость монотонной последовательности}
+
+
+\newpage
+
+\begin{center}
+\section{\LARGE{\bf Предел функции}}
+\end{center}
+
+\begin{Definition}
+Пусть $E\subseteq\mathbb{R}$ и $a\in\mathbb{R}.$ $a$ называется предельной точкой для $E,$ если $\forall\delta>0\;\exists x\in E: \; 0<\mid x-a\mid<\delta.$
+\end{Definition}
+
+Пусть $a$ предельная точка $E.$
+
+ 
+\end{document} 
