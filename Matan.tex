@@ -29,9 +29,10 @@
 \usepackage{indentfirst}
 \usepackage{graphicx}%,vmargin}
 \usepackage{epigraph} %%% to make inspirational quotes.
-\usepackage[all]{xy} 
+\usepackage[all]{xy} %для XyPic'a
 \usepackage{hyperref}
-\usepackage{color}
+\usepackage{color} 
+\usepackage{amscd} %для коммутативных диграмм
 
 %\renewcommand{\baselinestretch}{1.5}
 %\sloppy
@@ -367,11 +368,11 @@ $f$ -- биекция, если $f$ сюръекция и инъекция.
 Пусть имеются две функции: $f:X \rightarrow Y$ и $g:Y \rightarrow Z.$
 Определим отображение $h:X \rightarrow Z$ следующим образом: $\forall x\in X \; h(x)=g(f(x)),$ тогда $h=g\circ f$ и называется композицией $f$ и $g.$
 
-
+%КОММУТАТИВНАЯ ДИАГРАММА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 \subparagraph{Обратое отображение}
 %!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 \subparagraph{График отображения}
-
+%КАРТИНКА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 %!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 \subsection{Вещественные  числа}
@@ -408,7 +409,7 @@ $\mathbb{R}$ -- множество вещественных чисел.
 \item антисимметричность \quad $x\leq y \& y\leq x \Rightarrow x=y;$
 \item транзитивность \quad $x\leq y \& y\leq z \Rightarrow x\leq z.$
 \end{enumerate}
--- общие свойства порядка.
+-- общие свойства порядка.\\
 
 {\bf \RomanNumeralCaps{5}.} Связь операций и порядка.
 
@@ -419,7 +420,7 @@ $x\leq y \Rightarrow xz\leq yz.$
 {\bf \RomanNumeralCaps{6}.} Аксиома полноты.
 
 Пусть $X, Y\subset \mathbb{R}$ и $\forall x\in X \; \forall y\in Y \; x\leq y.$ Тогда существует $c\in\mathbb{R}: \; \forall x\in X \; \forall y\in Y \; x\leq c\leq y.$
-
+%КАРТИНКА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 \begin{Definition}
 
 \end{Definition}
@@ -635,7 +636,7 @@ $\mathbb{Q}$ счётно.
 Третьего не дано.
 
 \paragraph{Пример}
-$\frac{1}{n} \rightarrow 0, n\rightarrow \infty$
+$\frac{1}{n} \xrightarrow[n\rightarrow \infty]{} 0.$
 
 Действительно, возьмём $N=\left[\frac{1}{\varepsilon}\right] +1.$ Пусть $n>N,$ тогда $n>\left[\frac{1}{n}\right], \; n>\frac{1}{\varepsilon}, \; \frac{1}{n}<\varepsilon.$
 
@@ -653,7 +654,7 @@ $\frac{1}{n} \rightarrow 0, n\rightarrow \infty$
 Если $O_1$ и $O_2$ окрестности точки $a,$ то $V_1\cap V_2$ тоже окрестность точки $a.$
 
 \begin{Definition}
-Последовательность $x_n \rightarrow a, n\rightarrow \infty,$ если $\forall O$ -- окрестность точки $a\;$  $\exists N, \; \forall n>N \Rightarrow x_n\in O.$
+Последовательность $x_n \xrightarrow[n\rightarrow \infty]{} a,$ если $\forall O$ -- окрестность точки $a\;$  $\exists N, \; \forall n>N \Rightarrow x_n\in O.$
 \end{Definition}
 
 \subparagraph{Простейшие свойста пределов}
@@ -667,9 +668,9 @@ $\{x_n\}_{n=1}^{\infty}, \; x_n=a.$ Пусть $n=n_0+1, n_0+2,\ldots,$ тогд
 \end{proof}
 \item Ограниченность сходящейся последовательности. Если $\{x_n\}_{n=1}^{\infty}$ сходится, то $\{x_n\}_{n=1}^{\infty}$ ограничена.
 \begin{proof}
-Пусть $x_n \rightarrow a, n\rightarrow\infty.$ Возьмём $\varepsilon=1,$ тогда существует $n_0: \; \mid x_n-a\mid<1,$ при $n=n_0+1, n_0+2,\ldots$
+Пусть $x_n \xrightarrow[n\rightarrow\infty]{} a.$ Возьмём $\varepsilon=1,$ тогда существует $n_0: \; \mid x_n-a\mid<1,$ при $n=n_0+1, n_0+2,\ldots$
 
-При таких $n\; \mid x_n\mid\leq\mid a\mid+1.$ Возьмём число $M=max\{\mid x_1\mid, \mid x_2\mid,\ldots,\mid x_0\mid, \mid a\mid+1\}.$
+При таких $n\; \mid x_n\mid\leq\mid a\mid+1.$ Возьмём число $M=\max\{\mid x_1\mid, \mid x_2\mid,\ldots,\mid x_0\mid, \mid a\mid+1\}.$
 
 Теперь $\forall n \; \mid x_n\mid<M$
 
@@ -702,7 +703,7 @@ $n_k=x_{2k-1}$ -- только нечётные элементы.
 \begin{proof}
 Докажем, что если $\{x_n\}\rightarrow a,$ то и $y_k\rightarrow a (y_k=x_{n_k}.$
 
-Если $n_k$  строго возрастающая последовательность, то $n_k\geq k.$ Так как $\{x_n\}$ сходится, то $\forall\varepsilon>0 \; \exists N: \; \forall n>N \Rightarrow\mid x_n-a\mid<\varepsilon.$ Пусть $k>N,$ тогда $n_k\geq k>N \Rightarrow n_k>N,$ значит $\mid x_{n_k}-a\mid<\varepsilon \; x_{n_k}=y_k \Rightarrow \mid u_n-a\mid<\varepsilon,$ то есть $y_k \rightarrow a, n\rightarrow\infty.$
+Если $n_k$  строго возрастающая последовательность, то $n_k\geq k.$ Так как $\{x_n\}$ сходится, то $\forall\varepsilon>0 \; \exists N: \; \forall n>N \Rightarrow\mid x_n-a\mid<\varepsilon.$ Пусть $k>N,$ тогда $n_k\geq k>N \Rightarrow n_k>N,$ значит $\mid x_{n_k}-a\mid<\varepsilon \; x_{n_k}=y_k \Rightarrow \mid u_n-a\mid<\varepsilon,$ то есть $y_k \xrightarrow[n\rightarrow\infty]{} a.$
 \end{proof}
 
 \begin{Remark}
@@ -721,35 +722,46 @@ $x_n\rightarrow a \Rightarrow \forall \frac{\varepsilon}{2}>0 \; \exists N_1: \;
 
 $y_n\rightarrow a \Rightarrow \forall \frac{\varepsilon}{2}>0 \; \exists N_2: \; \forall n>N_2 \; \mid y_n-b\mid<\frac{\varepsilon}{2}.$
 
-Возьмём $n>max(N_1, N_2),$ сложим эти два неравенства и воспользуемся неравенством треугольника:
+Возьмём $n>\max(N_1, N_2),$ сложим эти два неравенства и воспользуемся неравенством треугольника:
 
 $\varepsilon=\frac{\varepsilon}{2}+\frac{\varepsilon}{2}>\mid x_n-a\mid+\mid y_n-b\mid \geq \mid x_n+y_n-(a+b)\mid = \mid z_n-(a+b),$ откуда $z_n \rightarrow a+b.$
 \end{proof}
 
 \begin{Theorem}[Предел произведения]
-
+Пусть есть две последовательности $\{x_n\}$ и $\{y_n\},$  рассмотрим последовательность $\{z_n\}: \; z_n=x_n\cdot y_n.$ Тогда, если $x_n\rightarrow a, \; y_n\rightarrow b,$ то последовательность $\{z_n\}$ сходится и сходится к $z_n\rightarrow a+b.$
 \end{Theorem}
 \begin{proof}
+Предварительная оценка: $\mid z_n-ab\mid=\mid x_n y_n-ab\mid=\mid(x_ny_n-ay_n)+(ay_n-ab)\mid\leq\mid y_n\mid\mid x_n-a\mid+\mid a\mid\mid y_n-b\mid.$ Так как $\{y_n\}$ -- сходится, то $\exists M: \; \mid y_n\mid<M \; \forall n\in\mathbb{N},$ более того, можно считать, что $\mid a\mid<M.$
 
+Так как $x_n\rightarrow a,$ то $\forall\varepsilon\;\exists N_1: \; \forall n>N_1 \Rightarrow\mid x_n-a\mid<\frac{\varepsilon}{2M}.$
+
+Из того, что $y_n\rightarrow b$ следует, что $\exists N_2: \; \forall n>N_2 \Rightarrow \mid y_n-b\mid<\frac{\varepsilon}{2M}.$
+
+Возьмём $N=\max(N_1, N_2),$ таким образом, если $n>N,$ то будут выполнены оба неравенства одновременно.
+
+Пусть $n>N,$ тогда $\mid z_n-ab\mid\leq\mid x_n=a\mid\mid y_n\mid+\mid a\mid\mid y_n-b\mid<\frac{\varepsilon}{2M}M+\frac{\varepsilon}{2M}M=\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon \Rightarrow \mid z_n-ab\mid<\varepsilon,$ то есть $z_n\xrightarrow[n\rightarrow\infty]{} ab.$
 \end{proof}
 
 \begin{Theorem}[Предел частного]
-
+Пусть имеются сходящиеся подпоследовательности $\{x_n\}$ и $\{y_n\}: \; x_n\rightarrow a$ и $y_n\rightarrow b,$ тогда последовательность $\{z_n\}=\frac{x_n}{y_n}, y_n\neq 0, n\in\mathbb{N}$ сходится к $\frac{a}{b}.$
 \end{Theorem}
 \begin{proof}
-
+%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 \end{proof}
-
+\begin{Corollary}
+Если $x_n\rightarrow a, y_n\rightarrow b,$ то $z_n=\lambda x_n+\mu y_n$ сходится и $z_n\rightarrow\lambda a+\mu b.$
+\end{Corollary}
 \subsection{Сходимость и неравенства}
 \begin{Theorem}
-
+Если $x_n\rightarrow a, y_n\rightarrow b, a<b,$ тогда $\exists n_0: \; x_n<y_n, n>n_0.$
 \end{Theorem}
 \begin{proof}
 
 \end{proof}
-
+\begin{Corollary}[О стабилизации знака]
+\end{Corollary}
 \begin{Theorem}[Предельный переход в неравенстве]
-
+Пусть $x_n\leq y_n, n\in\mathbb{N}$ и\\ $x_n\xrightarrow[n\rightarrow\infty]{} a,\; y_n\xrightarrow[n\rightarrow\infty]{} b\;  \Rightarrow \;a\leq b.$
 \end{Theorem}
 \begin{proof}
 
@@ -779,17 +791,17 @@ $\varepsilon=\frac{\varepsilon}{2}+\frac{\varepsilon}{2}>\mid x_n-a\mid+\mid y_n
 Сумма бесконечно малых последовательностей является бесконечно малая последовательность.
 \end{Theorem}
 \begin{proof}
-Очевидно, если взять $\varepsilon=\frac{\varepsilon}{2}.$
+Смотри %ЗАПИЛИТЬ ССЫЛКУ НА ТЕОРЕМУ 2.1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 \end{proof}
 
 \begin{Theorem}
 Произведение бесконечно малой и ограниченной -- бесконечно малая.
 \end{Theorem}
 \begin{proof}
-Пусть $\{\alpha_n\}$ -- бесконечно малая и $\{x_n\}$ ограниченная. $\{x_n\}$ ограничена, значит $\exists M: \; \mid x_n\mid\leq M, \forall n\in N.$ Из бесконечной малости $\{\alpha_n\}$ следует, что $\forall\varepsilon>0 \; \exists N: \; \forall n>N \; \mid\alpha_n\mid<\frac{\varepsilon}{M},$ то есть $\mid\omega_n\mid=\mid\alpha_n\mid\mid x_n\mid\leq\mid\alpha_n\mid\cdot M<\frac{\varepsilon}{M}\cdot M=\varepsilon \Rightarrow \omega_n\rightarrow 0, n\rightarrow\infty.$
+Пусть $\{\alpha_n\}$ -- бесконечно малая и $\{x_n\}$ ограниченная. $\{x_n\}$ ограничена, значит $\exists M: \; \mid x_n\mid\leq M, \forall n\in N.$ Из бесконечной малости $\{\alpha_n\}$ следует, что $\forall\varepsilon>0 \; \exists N: \; \forall n>N \; \mid\alpha_n\mid<\frac{\varepsilon}{M},$ то есть $\mid\omega_n\mid=\mid\alpha_n\mid\mid x_n\mid\leq\mid\alpha_n\mid\cdot M<\frac{\varepsilon}{M}\cdot M=\varepsilon \Rightarrow \omega_n\xrightarrow[n\rightarrow\infty]{} 0.$
 \end{proof}
 \subsubsection{Описание сходимости на языке бесконечно малых}
-$x_n \rightarrow a, n\rightarrow\infty \Leftrightarrow \alpha_n=x_n-a$ -- бесконечно малая.
+$x_n \xrightarrow[n\rightarrow\infty]{} a,  \Leftrightarrow \alpha_n=x_n-a$ -- бесконечно малая.
 
 \subsection{Бесконечно большие последовательности}
 
@@ -802,18 +814,109 @@ $\forall x\in\mathbb{R} \; -\infty<x<+\infty$
 
 \subsection{Сходимость монотонной последовательности}
 
+\subsection{Число $e$}
+Рассмотрим последовательность $x_n=\left(1+\frac{1}{n}\right)^n.$
+\begin{eqnarray}
+\nonumber x_n=1+C_n^1\frac{1}{n}+C_n^2\frac{1}{n^2}+\ldots+C_n^n\frac{1}{n^n} = \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\;\;\;\quad\quad\\ \nonumber
+=1+n\frac{1}{n}+\frac{n(n+1)}{2!}\frac{1}{n^2}+\frac{n(n-1)(n-2)}{3!}\frac{1}{n^3}+\ldots+\frac{n(n-1)\ldots(n-n+1)1}{n!}\frac{1}{n^n}=\\ \nonumber
+=1+1+\frac{1}{2!}\left(1-\frac{1}{n}\right)+\frac{1}{3!}\left(1-\frac{1}{n}\right)\left(1+\frac{2}{n}\right)+\ldots+\frac{1}{n!}\left(1-\frac{1}{n}\right)\ldots\left(1-\frac{n-1}{n}\right).
+\end{eqnarray}
 
+Таким образом $x_n=1+1+\frac{1}{2!}\left(1-\frac{1}{n}\right)+\frac{1}{3!}\left(1-\frac{1}{n}\right)\left(1+\frac{2}{n}\right)+\ldots+\frac{1}{n!}\left(1-\frac{1}{n}\right)\ldots\left(1-\frac{n-1}{n}\right)$\\
+
+
+и $x_{n+1}=1+1+\frac{1}{2!}\left(1-\frac{1}{n+1}\right)+\ldots+\frac{1}{n!}\left(1-\frac{1}{n+1}\right)\ldots\left(1-\frac{n-1}{n+1}\right)+\frac{1}{(n+1)!}\left(1-\frac{1}{n+1}\right)\ldots\left(1-\frac{n}{n+1}\right).$\\
+
+Как видно, переходе от $x_n$ к $x_{n+1}$ все слагаемые увеличиваются$: \; x_{n+1}>x_n.$
+
+$\{x_n\}_{n=1}^{\infty}$ -- возрастает.
+
+$x_n\leq 1+1+\frac{1}{2!}+\frac{1}{3!}+\ldots+\frac{1}{n!}\leq 1+1+\frac{1}{2}+\frac{1}{2^2}+\ldots+\frac{1}{2^{n-1}}\leq 1+2=3.$
+
+Получается, что $x_n$ ограничена сверху тройкой. Тогда по теореме %ЗАПИЛИТЬ ССЫЛКУ НА  ТЕОРЕМУ
+$\{x_n\}$ -- сходится.
+
+\begin{Definition}
+Предел этой последовательности обозначается числом $"e".$
+
+$e=\lim\limits_{n\rightarrow\infty}\left(1+\frac{1}{n}\right)^n \qquad\qquad e\approx 2.71828182459045\ldots$
+\end{Definition}
+
+\subsection{Верхний и нижний предел последовательности}
+\begin{Definition}
+Пусть $\{x_n\}_{n=1}^\infty$ -- ограниченная последовательность, тогда $X_n=\{x_n, x_{n+1},\ldots\}$ -- ограниченное множество.
+
+$y_n=\inf X_n$ -- убывает и ограничена$; \;z_n=\sup X_n.$ -- возрастает и ограничена, значит $y_n$ и $z_n$ сходятся.\\
+$z_n\rightarrow L-\overline{\lim} \;x_n$ -- верхний предел\\
+$y_n\rightarrow l=\underline{\lim} \;x_n$ -- нижний предел.
+\end{Definition}
+
+\begin{Theorem}
+Пусть последовательность $\{x_n\}_{n=1}^\infty$ -- ограничена, тогда последовательность сходится $\Leftrightarrow \; \underline{\lim} x_n=\overline{\lim} x_n.$ В случае сходимости $\lim x_n=\underline{\lim} x_n=\overline{\lim} x_n.$
+\end{Theorem}
+\begin{proof}
+Докажем необходимость. $\Rightarrow:$\\
+Пусть $x_n\xrightarrow[n\rightarrow\infty]{} A,$ тогда $\forall\varepsilon>0\;\exists N: \; \forall n>N\Rightarrow\;\mid x_n-A\mid<\varepsilon,$ иными словами $A-\varepsilon\leq y_n\leq A-\varepsilon\Rightarrow y_n\rightarrow A\leftarrow z_n \; \Rightarrow \; A=\overline{\lim} x_n =\underline{\lim} x_n.$
+
+Докажем достаточность. $\Leftarrow:$
+
+$A=\underline{\lim}x_n=\overline{\lim}x_n.$ Имеет место неравенство$: \; $%КОММУТАТИВНАЯ ДИАГРАММА!!!!!!!!!!!!!!!!!!!!!!!!
+\end{proof}
+\subsection{Принцип выбора Больцано-Вейерштрасса}
+\begin{Theorem}
+Из ограниченной последовательности можно извлечь сходящуюся подпоследовательность. Если $x_n$ -- ограничена то $\exists\{n_k\}$ -- строго монотонно возрастающая, такая, что $\{x_{n_k}\}$ сходится.
+\end{Theorem}
+\begin{proof}
+Построим подпоследовательность, сходящуюся к $L=\overline{\lim\limits_n}x_n.$
+
+$X_n=\{x_n, x_{n+1},\ldots\}.$ Так как последовательность ограничена, то будет существовать $z_n=\sup X_n$ и $z_n\rightarrow L$
+\end{proof}
+\subsection{Критерий Коши}
 \newpage
 
 \begin{center}
 \section{\LARGE{\bf Предел функции}}
 \end{center}
-
+\epigraph{\textit{Ну а это вы изучите сами дома.}}
+{-- Моисеев А.А.}
+\subsection{Понятие предела функции}
 \begin{Definition}
 Пусть $E\subseteq\mathbb{R}$ и $a\in\mathbb{R}.$ $a$ называется предельной точкой для $E,$ если $\forall\delta>0\;\exists x\in E: \; 0<\mid x-a\mid<\delta.$
 \end{Definition}
 
-Пусть $a$ предельная точка $E.$
+Рассмотрим множество на числовой прямой $(a, b)\cup\{c\}.$ Точки $a$ и $b$ -- предельные точки множества. Точка $c$ называется изолированной точкой множества.
 
- 
+%КАРТИНКА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+$a$ предельная, если $\forall O$ окрестности $a \; \exists x\in O\cap E, x\neq a.$
+
+Помимо обычной окрестности точки вводят также определение проколотой окрестности: $\dot{O} = O\setminus\{a\}.$
+
+Таким образом, $a$ предельная точка для $E,$ если $\forall O$ -- окрестности точки $a$ выполнено, что $E\cap\dot{O}\neq\varnothing.$
+
+\subsection{Определение предела функции}
+
+\begin{Definition}
+$E\subseteq\mathbb{R}, a$ -- предельная точка $E, \; f$ -- функция на $\mathbb{E}, A\in\mathbb{R}. \; A$ называется пределом функции $f$ в точке $a, \;f(x)\xrightarrow[x\rightarrow a]{} A; \; A=\lim\limits_{x\rightarrow a} f(x); A=\lim\limits_{a}f,$ если:
+\begin{enumerate}
+\item на языке $\varepsilon$-$\delta:$
+
+$\forall\varepsilon>0 \;\exists\delta>0\;\forall x\in E 0<\mid x-a\mid<\delta \Rightarrow \mid f(x)-A\mid<\varepsilon;$
+
+\item на языке окреcтностей$:$
+
+$\forall O$ окрестности точки $A$ $\exists V$ -- окрестность точки $a: \; f(\dot{V}\cap E \subset O;$
+
+\item на языке последовательностей$:$
+
+$\forall\{x_n\} \; x_n\in E \; x_n\neq a, \; x_n\xrightarrow[n\rightarrow\infty]{} a,  \Rightarrow f(x_n)\xrightarrow[n\rightarrow\infty]{} A.$
+\end{enumerate}
+\end{Definition}
+
+\subparagraph{Пример}
+
+%КАРТИНКА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Предел -- локальное понятие. Если $f=g$ в $\dot{O}$ проколотой окрестности точки $a,$ то они имеют пределы и они равны.
+
 \end{document} 
