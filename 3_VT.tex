@@ -1,0 +1,409 @@
+\documentclass{article}
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%
+% Packages/Macros %
+%%%%%%%%%%%%%%%%%%%
+\usepackage{mathrsfs}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\normalsize\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\RomanNumeralCaps}[1]
+    {\MakeUppercase{\romannumeral #1}}
+
+\usepackage{amssymb,latexsym}  % Standard packages
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{MnSymbol}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amsthm}
+\usepackage{indentfirst}
+\usepackage{graphicx}%,vmargin}
+\usepackage{epigraph} %%% to make inspirational quotes.
+\usepackage[all]{xy} %для XyPic'a
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{tikz}
+\usepackage{amscd} %для коммутативных диграмм
+\usepackage{amsmath}
+
+
+%\renewcommand{\baselinestretch}{1.5}
+%\sloppy
+%\usepackage{listings}
+%\lstset{numbers=left}
+%\setmarginsrb{2cm}{1.5cm}{1cm}{1.5cm}{0pt}{0mm}{0pt}{13mm}
+
+
+\newtheorem{Lemma}{Лемма}[section]
+\newtheorem{Proposition}{Предложение}[section]
+\newtheorem{Theorem}{Теорема}[section]
+\newtheorem{Corollary}{Следствие}[section]
+\newtheorem{Remark}{Замечание}[section]
+\newtheorem{Definition}{Определение}[section]
+\newtheorem{Designations}{Обозначение}[section]
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%Сношение с оглавлением%
+%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \huge\bfseries\MakeUppercase}
+\renewcommand{\cftbeforetoctitleskip}{-1em}
+\renewcommand{\cftaftertoctitle}{\mbox{}\hfill \\ \mbox{}\hfill{\footnotesize Стр.}\vspace{-0.5em}}
+%\renewcommand{\cftchapfont}{\normalsize\bfseries \MakeUppercase{\chaptername} }
+\renewcommand{\cftsecfont}{\hspace{1pt}}
+\renewcommand{\cftsubsecfont}{\hspace{1pt}}
+%\renewcommand{\cftbeforechapskip}{1em}
+\renewcommand{\cftparskip}{3mm} %определяет величину отступа в оглавлении
+\renewcommand{\cftdotsep}{1} %частота точек
+
+\setcounter{tocdepth}{3}
+
+%%%%%%Переопределение chapter%%%%%%
+\newcommand{\empline}{\mbox{}\newline}
+\newcommand{\likechapterheading}[1]{
+\begin{center}
+\textbf{\MakeUppercase{#1}}
+\end{center}
+\empline}
+
+%%%%%%%Запиливание переопределённого chapter в оглавление%%%%%%
+\makeatletter
+\renewcommand{\@dotsep}{2}
+\newcommand{\l@likechapter}[2]{{\bfseries\@dottedtocline{0}{0pt}{0pt}{#1}{#2}}}
+\makeatother
+\newcommand{\likechapter}[1]{
+\likechapterheading{#1}
+\addcontentsline{toc}{likechapter}{\MakeUppercase{#1}}}
+
+
+
+%\renewcommand{\thelikesection}{(\roman{likesection})}
+%%%%%%%%%%%
+% Margins %
+%%%%%%%%%%%
+\addtolength{\textwidth}{0.7in}
+\textheight=630pt
+\addtolength{\evensidemargin}{-0.4in}
+\addtolength{\oddsidemargin}{-0.4in}
+\addtolength{\topmargin}{-0.4in}
+
+
+%%%%%%%%%%%%{\arabic{l@likesection}}
+% Document %
+%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%главы -- section*%%%%%%
+%%%%section -- subsection%%%%
+%subsection -- subsubsection%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def \newstr {\medskip \par \noindent}
+
+\begin{document}
+
+\begin{center}
+\section{\LARGE{\bf Предел функции}}
+\end{center}
+\epigraph{\textit{Ну а это вы изучите сами дома.}}
+{-- Моисеев А.А.}
+\subsection{Понятие предела функции}
+\subparagraph{Предельная точка}
+\begin{Definition}
+Пусть $E\subseteq\mathbb{R}$ и $a\in\mathbb{R}.$ $a$ называется предельной точкой для $E,$ если $\forall\delta> 0\;\exists x\in E: \; 0<\mid x-a\mid<\delta.$
+\end{Definition}
+
+Рассмотрим множество на числовой прямой $(a, b)\cup\{c\}.$ Точки $a$ и $b$ -- предельные точки множества. Точка $c$ называется изолированной точкой множества.
+
+
+
+$a$ предельная, если $\forall O$ окрестности $a \; \exists x\in O\cap E, x \neq a.$
+
+Помимо обычной окрестности точки вводят также определение проколотой окрестности: $\dot{O} = O\setminus\{a\}.$
+
+Таким образом, $a$ предельная точка для $E,$ если $\forall O$ -- окрестности точки $a$ выполнено, что $E\cap\dot{O}\neq\varnothing.$
+
+\subparagraph{Определение предела функции}
+
+\begin{Definition}
+$E\subseteq\mathbb{R}, a$ -- предельная точка $E, \; f$ -- функция на $\mathbb{E}, A\in\mathbb{R}. \; A$ называется пределом функции $f$ в точке $a, \;f(x)\xrightarrow[x\rightarrow a]{} A; \; A=\lim\limits_{x\rightarrow a} f(x); A=\lim\limits_{a}f,$ если:
+\begin{enumerate}
+\item на языке $\varepsilon$-$\delta:$
+
+$\forall \varepsilon > 0 \;\exists \delta > 0\;\forall x\in E 0<\mid x-a\mid<\delta \Rightarrow \mid f(x)-A\mid<\varepsilon;$
+
+\item на языке окреcтностей$:$
+
+$\forall O$ окрестности точки $A$ $\exists V$ -- окрестность точки $a: \; f(\dot{V}\cap E \subset O;$
+
+\item на языке последовательностей$:$
+
+$\forall\{x_n\} \; x_n\in E \; x_n \neq a, \; x_n\xrightarrow[n \rightarrow \infty]{} a,  \Rightarrow f(x_n)\xrightarrow[n\rightarrow\infty]{} A.$
+\end{enumerate}
+\end{Definition}
+
+\par\medskip \textbf{Пример}\par
+
+%КАРТИНКА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Предел -- локальное понятие. Если $f=g$ в $\dot{O}$ проколотой окрестности точки $a,$ то они имеют пределы и они равны.
+
+\subparagraph{Равносильность определений}
+\begin{Theorem}[Равносильность определений]
+Определения (1), (2) и (3) равносильны. Если $A=\lim\limits_{x \to a} f(x)$ в смысле одного из определений, то $A=\lim\limits_{x \to a} f(x)$ и в смысле других определений.
+\end{Theorem}
+\begin{proof}
+Для начала сравним определения (1) и (2).
+Пусть $A=\lim\limits_{x \to a} f(x)$ в смысле (1). Возьмём произвольную окрестность $V$ точки $A$. Найдётся такое $\varepsilon>0$, что $V_\varepsilon(A) \subset V$. По определению (1) существует такое $\delta > 0$, что
+$$x \in E, x \neq a, \; \mid x - a \mid \; < \varepsilon \Rightarrow \mid f(x) - A \mid \; < \varepsilon.$$
+Полагая $U = V_\delta (a)$, можно переписать предыдущее соотношение в виде $f(U \cap E) \in V_\varepsilon(A) \in V$. Таким образом, $A=\lim\limits_{x \to a} f(x)$ в смысле (2).
+Наоборот, пусть $A=\lim\limits_{x \to a} f(x)$ в смысле (2). Возьмём произвольное $\varepsilon > 0$ и положим $V = V_\varepsilon(A)$. По определению (2) найдётся окрестность $U$ точки $a$, для которой $f(U \cap E) \in V$. Подберём $\delta > 0$, для которого $V_\delta(a) \in U$. Теперь
+$$\forall x \in E, 0 < \; \mid x - a \mid \; < \delta \Rightarrow \mid f(x) - A \mid<\varepsilon,$$
+$A=\lim\limits_{x \to a} f(x)$ в смысле (2). Установлена равносильность определений (1), (2).
+Докажем равносильность определений (1), (3).
+Пусть $A=\lim\limits_{x \to a} f(x)$ в смысле (1). Возьмём произвольную последовательность
+$${x_n}, x_n \neq a, x_n \xrightarrow[n\rightarrow\infty]{} a.$$
+и убедимся в том, что $f(x_n) \xrightarrow[n\rightarrow\infty]{} A.$
+Возьмём произвольное $\varepsilon > 0$. По определению (1) найдётся такое $\delta > 0$, что
+$$\forall x \in E, 0 < \; \mid x - a \mid \; < \delta \Rightarrow \mid f(x) - A \mid < \varepsilon.$$
+По определению предела последовательности найдётся номер $N$, для которого
+$$ n > N \Rightarrow \mid x_n - a \mid \; < \delta.$$
+Видим, что при $n > N$ выполняется соотношение $\mid f(x_n) - A \mid \;  < \varepsilon.$ Итак, $f(x_n) \xrightarrow[n\rightarrow\infty]{} A.$ $A=\lim\limits_{x \to a} f(x)$ в смысле (3).
+Пусть $A=\lim\limits_{x \to a} f(x)$ в смысле (3). Допустим, $A$ не является пределом в смысле (1). Тогда
+$$\exists\varepsilon > 0 \; \forall \delta > 0 \; \exists x \in E, 0 < \;  \mid x - a \mid \; < \delta, \; \mid f(x) - A \mid \; \geq \varepsilon.$$
+В качестве $\delta > 0 $ последовательно возьмём числа $\frac1{n}$, $n = 1, 2, \ldots$ и найдём точки $x_n \in E, 0 < \; \mid x_n - a \mid \; < \frac1{n}, \; \mid f(x_n) - A \mid \; \geq \varepsilon$. Тем самым мы получаем последовательность ${x_n}$. Неравенство $\mid x_n - a \mid < \frac1{n} $ означает, что $x_n \xrightarrow[n\rightarrow\infty]{} a$, а неравенство $\mid f(x_n) - A \mid \geq \varepsilon$ говорит, что $A$ не является пределом для ${f(x_n)}$, вопреки предположению. Полученное противоречие заставляет нас признать, что $A=\lim\limits_{x \to a} f(x)$ в смысле (1).
+\end{proof}
+\subsection{Различные предельные конструкции}
+\subparagraph{Односторонние пределы}
+Пусть $f$ определена на некотором интервале $(a - \delta_0, a)$.
+Число $A$ -- левосторонний предел функции $f$ в точке $a$ $(A = f(a - 0)$, $A=\lim\limits_{x \to a - 0} f(x), f(x) \xrightarrow[n\rightarrow a-0]{} A),$ если
+$$ \forall \varepsilon > 0 \; \exists \delta > 0 \; \forall x: a - \delta < x < a \Rightarrow \; \mid f(x) - A \mid \; < \varepsilon.$$
+Пусть $f$ определена на некотором интервале $(a, a + \delta_0)$.
+Число $A$ называется правосторонним пределом функции $f$ в точке $a (a = f(a+0), A=\lim\limits_{x \to a+0} f(x)), f(x) \xrightarrow[n\rightarrow a+0]{} A),$ если
+$$ \forall \varepsilon > 0 \; \exists \delta > 0 \; \forall x: a < x < a + \delta \Rightarrow \; \mid f(x) - A \mid \; < \varepsilon.$$
+Определения односторонних пределов можно дать и в терминах окрестностей и последовательностей.
+\begin{Proposition}
+Функция $f$ определена в проколотой окрестности точки $a$.
+Тогда функция имеет предел в точке $a$ в том и только том случае, если существуют и равны между собой односторонние пределы $f(a-0) = f(a+0).$ В случае существования предела
+$$f(a-0) = f(a+0) = \lim\limits_{x \to a} f(x)$$
+\end{Proposition}
+
+\subparagraph{Бесконечные пределы}
+В определении предела число $A$ можно заменить на $+\infty$, $-\infty$, $\infty$. Например,
+$$f(x) \xrightarrow[x\rightarrow a]{} -\infty \Leftrightarrow \forall E > 0 \; \exists \delta > 0, \; 0 < \; \mid x - a \mid \; < \delta \Rightarrow f(x) < -E.$$
+
+\subparagraph{Пределы на бесконечности}
+Бесконечности могут выполнять и роль точки, в которой вычисляется предел. Например,
+$$f(x) \xrightarrow[x\rightarrow a]{} \infty \Leftrightarrow \forall E > 0 \; \exists \delta > 0: x > \delta \Rightarrow \; \mid f(x) \mid \; > E.$$
+
+\subsection{Простейшие свойства предела функции}
+\begin{enumerate}
+\item Если функция постоянна в некотрой проколотой окрестности точки $a$, $f(x) = A$ при $x \in V$, то $f(x) \xrightarrow[x\rightarrow a]{} A.$
+\item Предел единственен.
+\item Если функция имеет конечный предел, то она она ограничена в некотрой проколотой окрестности.
+\end{enumerate}
+
+\subsection{Предел и арифметические операции}
+\begin{Theorem}
+Пусть функции $f, g$ определены в проколотой окрестности $E$ точки $a$.
+$$f(x) \xrightarrow[x\rightarrow a]{} A, g(x) \xrightarrow[x\rightarrow a]{} B.$$
+Определим функции
+$$F: F(x) = f(x) + g(x), x \in E;$$
+$$G: G(x) = f(x) \cdot g(x), x \in E;$$
+$$H: H(x) = \frac{f(x)}{g(x)}, x \in E.$$
+(В последнем случае предполагаем, что $g(x) \neq 0$ при $x \in E$).
+Тогда функции $F, G, H$ тоже имеют пределы,
+$$F(x) \xrightarrow[x\rightarrow a]{} A + B, G(x) \xrightarrow[x\rightarrow a]{} A \cdot B, H(x) \xrightarrow[x\rightarrow a]{} \frac{A}{B}$$
+(последнее при условии $B \neq 0$).
+\end{Theorem}
+
+\begin{proof}
+Докажем, например, последнее утверждение.
+Возьмём произвольную последовательность ${x_n}, x_n \in E, x_n \neq a, x_n \xrightarrow[n\rightarrow \infty]{} B.$
+По теореме о пределе отношения последовательностей $H(x_n) \xrightarrow[n \rightarrow \infty]{} \frac{A}{B}.$ Опять по определению предела функции $H(x) \xrightarrow[x \rightarrow a]{} \frac{A}{B}.$
+\end{proof}
+
+\subsection{Предел и неравенства}
+\begin{Theorem}
+Пусть функции $f, g$ определены в проколотой окрестности $E$ точки $a$.
+
+\subparagraph{Стабилизация неравенств}
+$$f(x) \xrightarrow[x \rightarrow a]{} A, g(x) \xrightarrow[x \rightarrow a]{} B, A < B.$$
+Тогда
+$$\exists U \; \forall x \in U, f(x) < g(x).$$
+
+\subparagraph{Предельный переход в неравенстве}
+$$\forall x \in E, f(x) < g(x),$$
+$$f(x) \xrightarrow[x \rightarrow a]{} A, g(x) \xrightarrow[x \rightarrow a]{} B,$$
+Тогда
+$$A \leq B.$$
+\begin{Remark}
+Можно ослабить условие и потребовать выполнения неравенства $f(x) \leq g(x)$ в некоторой проколотой окрестности точки $a$.
+\end{Remark}
+
+\subparagraph{Теорема о полицейских}
+$$\forall x \in E, f(x) \leq h(x) \leq g(x),$$
+$$f(x) \xrightarrow[x \rightarrow a]{} A, g(x) \xrightarrow[x \rightarrow a]{} A.$$
+Тогда
+$$h(x) \xrightarrow[x \rightarrow a]{} A.$$
+
+\end{Theorem}
+\begin{proof}
+Рассмотрим окрестности $V_A = \left( -\infty;\frac{A+B}{2} \right)$ и $V_B = \left(\frac{A+B}{2};+\infty \right)$ точек $A$ и $B$ соответственно. На основании определения предела мы можем найти такую окрестность $U$ точки $a$, что при $x \in U$ справедливы включения $f(x) \in V_A$ и $g(x) \in V_B$. $U$ -- искомая окрестность. Поскольку из $f(x) \in V_A$ следует, что $f(x) < \frac{A+B}{2}$, а $g(x) \in V_B$ влечёт $g(x) > \frac{A+B}{2}$, то $f(x) < g(x)$.
+
+Утверждение о предельном переходе в неравенстве доказывается, как и в случае последовательностей, методом от противного. Допустив, что имеет место неравенство $A > B$, мы придём к противоречащему условию выводу о том, что в пределах некоторой проколотой окрестности точки $a$ выполняется неравенство $f(x) > g(x)$.
+
+Возьмём произвольную последовательность ${x_n}, x_n \neq a, x_n \xrightarrow[n \rightarrow \infty]{} a.$
+
+По определению предела на языке последовательностей получаем соотношения $f(x_n) \xrightarrow[n \rightarrow \infty]{} A, g(x_n) \xrightarrow[n \rightarrow \infty]{} A$, а по условию $f(x_n) \leq h(x_n) \leq g(x_n), n = 1, 2, \ldots$ По теореме о полицейских для последовательностей $h(x_n) \xrightarrow[n \rightarrow \infty]{} A$. Вновь пользуясь определением на языке последовательностей, делаем вывод, что $h(x_n) \xrightarrow[n \rightarrow \infty]{} A$.
+\end{proof}
+
+\subsection{Бесконечно малые и бесконечно большие функции}
+\subparagraph{Бесконечно малые функции}
+\begin{Definition}
+Функция $\alpha$ -- бесконечно малая при $x \rightarrow a$, если $\alpha(x) \xrightarrow[x \rightarrow a]{} 0$.
+\end{Definition}
+\begin{Theorem}Сумма бесконечно малых является бесконечно малой.\end{Theorem}
+\begin{Theorem}Произведение бесконечно малой на ограниченную функцию является бесконечно малой. \end{Theorem}
+\begin{Theorem}[Определение предела в терминах бесконечно малых]
+$$f(x) \xrightarrow[x \rightarrow a]{} A \Leftrightarrow \alpha = f - A -- б. м.$$
+\end{Theorem}
+\subparagraph{Бесконечно большие функции}
+\begin{Definition}Функция $f$ называется бесконечно большой ($f(x) \xrightarrow[x \rightarrow a]{} \infty)$, если
+$$\forall E > 0 \; \exists \delta > 0, \; 0 < \; \mid x - a \mid \; < \delta \Leftrightarrow \; \mid f(x) \mid \; > E.$$
+\end{Definition}
+
+\begin{Theorem} $\alpha$ -- б. м. $\Leftrightarrow f = \frac{1}{\alpha}$ -- б. б. \end{Theorem}
+
+\subsection{Предел монотонной функции}
+\begin{Definition}
+Пусть $f$ -- функция, определённая на промежутке $\Delta$.
+\end{Definition}
+
+\begin{itemize}
+\item Функция $f$ называется возрастающей (строго возрастающей), если
+$$\forall x, y \in \Delta \; x < y \Rightarrow f(x) \leq f(y) \; \left(f(x) < f(y)\right).$$
+\item Функция $f$ называется убывающей (строго убывающей), если
+$$\forall x, y \in \Delta \; x < y \Rightarrow f(x) \geq f(y) \; \left(f(x) > f(y)\right).$$
+\item Функция называется (строго) монотонной, если она (строго) убывает или (строго) возрастает.
+\end{itemize}
+\begin{Theorem}
+Пусть $f$ -- монотонная функция на интервале $(a, b)$.
+Тогда существуют односторонние пределы $f(a+0), f(b-0)$, может быть, бесконечные.
+\end{Theorem}
+\begin{proof}
+Для определённости рассмотрим возрастающую функцию.
+
+Пусть $f$ ограничена сверху. Положим $M = \sup f(a, b)$ и покажем, что $f(x) \xrightarrow[x \rightarrow b-0]{} M$. Возьмём произвольное $\varepsilon > 0$. Найдётся такой $x_0 \in (a, b)$, что $f(x_0) > M - \varepsilon$.
+Положим $\delta = b - x_0$. Теперь, $\forall x \in (b - \delta, b)$ имеет место неравенство $x > b - \delta = x_0$, поэтому $f(x) \geq f(x_0) > b - \varepsilon, M - \varepsilon < f(x) \leq M$. Видим, что $f(x) \xrightarrow[x \rightarrow b - 0]{} M$.
+
+В случае неограниченности $f(x) \xrightarrow[x \rightarrow b - 0]{} +\infty$.
+Действительно, $\forall E > 0 \; \exists x_0 \; f(x_0) > E$. Далее, $\forall x \in (x_0, b) \; f(x) \geq f(x_0) > E$.
+\end{proof}
+
+\subsection{Критерий Коши существования предела}
+\begin{Theorem}
+Для существования конечного предела $\lim\limits_{x \to \infty} f(x)$ необходимо и достаточно условие Коши
+$$\forall \varepsilon > 0 \; \exists \delta > 0, \; 0 < \; \mid x' - x_0 \mid, \; \mid x^n - x_0 \mid \; < \delta \Rightarrow \; \mid f(x^\prime) - f(x^{\prime\prime}) \mid \; < \varepsilon.$$
+\end{Theorem}
+
+\begin{proof}
+Необходимость. Пусть $f(x) \xrightarrow[x \rightarrow x_0]{} A$.
+Возьмём произвольное $\varepsilon > 0$. Найдётся такое $\delta > 0$, что
+$$0 < \; \mid x - x_0 \mid \; \delta \Rightarrow \; \mid f(x) - A \mid \; \frac{\varepsilon}{2}.$$
+Для любых $x^\prime, x^{\prime\prime}$, удовлетворяющих условиям $0 < \; \mid x^\prime - x_0 \mid, \; \mid x^{\prime\prime} - x_0 \mid \; < \delta$ получается неравенство
+$$\mid f(x^\prime) - f(x^{\prime\prime}) \mid \; = \; \mid \left(f(x^\prime) - A\right) - \left(f(x^{\prime\prime}) - A\right) \mid \; \leq \; \mid f(x^\prime) - A \mid + \mid f(x^{\prime\prime}) - A \mid \; < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon.$$
+
+Достаточность. Возьмём произвольное $\varepsilon > 0$ и подберём $\delta > 0$, о котором идёт речь в условии Коши.
+
+Для произвольной последовательности $\{x_n\}^{\infty}_{n=1}$, для которой $x_n \rightarrow x_0$ и $x_n \neq x_0$, найдётся такой номер $N$, что
+$$n > N \Rightarrow 0 < \; \mid x_n - x_0 \mid < \delta.$$
+Получается, что
+$$\forall n, m > N \; \mid f(x_n) - f(x_m) \mid \; < \varepsilon.$$
+Последовательность $\{f(x_n)\}_{n=1}^{\infty}$ фундаментальная, следовательно, она сходится. Осталось убедиться в том, что все такие последовательности имеют один и тот же предел. Пусть последовательности $\{{x^\prime}_n\}, \{{x^{\prime\prime}}_n\}$ имеют предел $x_0$ и состоят из членов, отличных от $x_0$. Построим последовательность ${x_n}$, полагая $x_2n-1 = {x^\prime}_n, x_2n = x^{\prime\prime}_n$. Тогда $x_n \xrightarrow[n \rightarrow \infty]{} x_0$, $x_n \neq x_0$ поэтому существует $A=\lim\limits_{n\rightarrow \infty} f(x_n)$.
+По теореме о пределе подпоследовательности: $f(x^\prime), f({x^\prime}_n) \xrightarrow[n \rightarrow \infty]{} A$.
+\end{proof}
+
+\subsection{Сравнение функций (бесконечно малых)}
+\begin{Definition}
+Пусть функции $\alpha, \beta$ определены в некоторой проколотой окрестности точки $x_0, \beta$ не обращается в $0$ ни в одной точке.
+\begin{enumerate}
+\item Говорят, что $\alpha, \beta$ одного порядка при $x \rightarrow x_0$, если
+$$\frac{\alpha(x)}{\beta(x)} \xrightarrow[x \rightarrow x_0]{} A \neq 0, \infty$$
+Для бесконечно малых функций $\alpha$, $\beta$ в этом случае говорят, что функция $\alpha\, \beta$ одного порядка малости.
+\item $\alpha, \beta$ эквивалентны при $x \rightarrow x_0, \alpha(x) \underset{x \rightarrow x_0}{\sim} \beta(x)$, если
+$$\frac{\alpha(x)}{\beta(x)} \xrightarrow[x \rightarrow x_0]{} 1.$$
+\begin{Remark} В условиях пункта (1) $\alpha(x) \underset{x \rightarrow x_0}{\sim} A\beta(x).$ \end{Remark}
+\item Функция $\alpha$ называется бесконечно малой по сравнению с $\beta, \alpha(x)  \underset{x \rightarrow x_0}{=} o\left(\beta(x) \right)$ ($\alpha$ есть $o$-малое от $\beta$), если
+$$\frac{\alpha(x)}{\beta(x)} \xrightarrow[x \rightarrow x_0] 0.$$
+Для бесконечно малых функций $\alpha, \beta$ в этом случае говорят, что функция $\alpha$ более высокий порядок малости, чем $\beta$.
+В смысле принятого определения запись $\alpha = o$ (1) означает бесконечную малость функции $\alpha$.
+\item $\alpha \underset{x \rightarrow x_0}{=} O(\beta)$, если $\frac{\alpha}{\beta}$ ограничено в некоторой проколотой окрестности точки $x_0$.
+\end{enumerate}
+\par\medskip \textbf{Пример}\par $x + 2x^2 \underset{x \rightarrow 0}{\sim} x, x^2 \underset{x \rightarrow 0}{=} o(x)$.
+\end{Definition}
+
+\begin{Definition}
+  Если $\alpha(x) \underset{x \rightarrow x_0}{\sim} A \left(\beta(x) \right)^k$, то говорят, что $\alpha$ имеет $k$-й порядок относительно $\beta$.
+  Если $\alpha(x) \underset{x \rightarrow x_0}{\sim} A \left(x - x_0 \right)^k$, то $\alpha$ имеет $k$-й порядок малости, функция $A(x-x_0)^k$ называется главной частью б. м. $\alpha$.
+  (Для случая $x \rightarrow \infty$ роль основной б. м. выполняет функция $\frac1{x}$, функция $\alpha(x) \underset{x \rightarrow x_0}{\sim} \frac{A}{x^k}$ имеет $k$-й порядок малости, имеет $\frac{A}{x^k}$ своей главной частью).
+\end{Definition}
+
+\begin{Theorem}
+При вычислении пределов сомножители можно заменять на эквивалентные.
+
+Пусть $\alpha(x) \underset{x \rightarrow x_0}{\sim} \alpha_1(x), \beta(x) \underset{x \rightarrow x_0}{\sim} \beta_1(x)$.
+
+Тогда
+\begin{enumerate}
+  \item Если $\frac{\alpha_1(x)}{\beta_1(x)} \xrightarrow[x \rightarrow x_0]{} A$, то $\alpha(x)\beta(x) \xrightarrow[x \rightarrow x_0]{} A$.
+  \item Если $\alpha_1(x) \beta_1(x) \xrightarrow[x \rightarrow x_0]{} A$, то $\frac{\alpha(x)}{\beta(x)} \xrightarrow[x \rightarrow x_0]{} A$.
+  \item $\frac{\alpha(x)}{\beta(x)} \underset{x \rightarrow x_0}{\sim} \frac{\alpha_1(x)}{\beta_1(x)}$.
+  \item $\alpha(x) \beta(x) \underset{x \rightarrow x_0}{\sim} \alpha_1(x) \beta_1(x)$.
+\end{enumerate}
+\end{Theorem}
+
+\begin{proof}
+\begin{enumerate}
+  \item $\frac{\alpha(x)}{\beta(x)} = \frac{\alpha_1(x)}{\beta_1(x)} \frac{\alpha(x)}{\alpha_1(x)} \frac{\beta_1(x)}{\beta(x)} \xrightarrow[x \rightarrow x_0]{} A \cdot 1 \cdot 1 = A$.
+  \item
+  \item
+  \item $\frac{\alpha(x) \beta{x}}{\alpha_1(x) \beta_1{x}} = \frac{\alpha(x)}{\alpha_1(x)} \frac{\beta(x)}{\beta_1(x)} \xrightarrow[x \rightarrow x_0]{} = 1 \cdot 1 = 1.$
+\end{enumerate}
+\end{proof}
+
+\begin{Theorem}[Условие эквивалентности]
+$$\alpha \sim \beta \Leftrightarrow \alpha - \beta = o(\beta)$$
+$$\alpha \sim \beta \Leftrightarrow \alpha = \beta + o(\beta)$$
+\end{Theorem}
+
+\begin{proof}
+$$\alpha \sim \beta \Leftrightarrow \frac{\alpha}{\beta} \rightarrow 1 \Leftrightarrow \frac{\alpha}{\beta} - 1 \rightarrow 0 \Leftrightarrow \frac{\alpha - \beta}{\beta} \rightarrow 0 \Leftrightarrow \alpha - \beta = o(\beta).$$
+\end{proof}
+
+
+\subparagraph{Операции с $o$}
+\begin{enumerate}
+  \item Если $\beta_1, \beta_2$ одного порядка, то $o(\beta_1) = o(\beta_2)$.
+  \item $o(\beta) \pm o(\beta) = o(\beta)$.
+  Равенство следует понимать как утверждение:
+  $$Если \alpha_1 = o(\beta) и \alpha_2 = o(\beta), то \alpha_1 \pm \alpha_2 = o(\beta).$$
+  \item $\gamma \cdot o(\beta) = o(\gamma \beta), o(\gamma) \cdot o(\beta) = o(\gamma \beta).$
+  \item Если $\alpha = o(\beta), \beta = o(\gamma)$, то $\alpha = o(\gamma)$.
+  Действительно, $\frac{\alpha}{\gamma} = \frac{\alpha}{\beta} \frac{\beta}{\gamma} \rightarrow 0 \cdot 0 = 0$.
+\end{enumerate}
+\par\medskip \textbf{Пример}\par $x^3 \underset{x \rightarrow 0}{=} o(x^2), x^2 \underset{x \rightarrow 0}{=} o(x)$, поэтому $x^3 \underset{x \rightarrow 0}{=} o(x)$, иными словами $o(x^2) \underset{x \rightarrow 0}{=} o(x)$. Отметим, что в последнем "равенстве" нельзя менять местами левую и правую части.
+
+\end{document}
