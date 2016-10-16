@@ -28,6 +28,10 @@
 \usepackage{amsmath,amsthm}
 \usepackage{indentfirst}
 \usepackage{graphicx}%,vmargin}
+\usepackage{graphicx}
+\graphicspath{{pictures/}} 
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}% -- настройка картинок
+
 \usepackage{epigraph} %%% to make inspirational quotes.
 \usepackage[all]{xy} %для XyPic'a
 \usepackage{hyperref}
@@ -64,7 +68,7 @@
 \renewcommand{\cftsubsecfont}{\hspace{1pt}} 
 %\renewcommand{\cftbeforechapskip}{1em} 
 \renewcommand{\cftparskip}{3mm} %определяет величину отступа в оглавлении
-\renewcommand{\cftdotsep}{1} %частота точек
+%\renewcommand{\cftdotsep}{1} %частота точек
 
 \setcounter{tocdepth}{3} 
 
@@ -270,6 +274,7 @@ $\supseteq:$
 $\Rightarrow:$
 
 Возьмём $x\in A$ и докажем, что он принадлежит $B.$ Так как их того, что $x\in A \; \& \; x\in B$ следует, что $x\in A,$ то для любого $x\in A$ следует то, что $x\in B,$ тем самым, $A\subset B.$
+\newpage
 
 $\Leftarrow:$
 
@@ -310,10 +315,10 @@ x\in c\left(A\cup B\right) \Leftrightarrow x\notin A\cup B \Leftrightarrow \neg\
 \end{Remark}
 \end{itemize}
 
-\subsection{Отображения(Функции)}
+\subsection{Отображения (функции)}
 
 \begin{Definition}
-Пусть $X$ и $Y$ -- не пустые множества, тогда правило-закон $f,$ который каждому $x\in X$ однозначно сопостовляет некий $y\in Y,$ называется отображением(функцией) определённой на $X$ со значениями в $Y$ и обозначается: $f:X \rightarrow Y$ или $X \xrightarrow{\text{f}}Y$
+Пусть $X$ и $Y$ -- не пустые множества, тогда правило-закон $f,$ который каждому $x\in X$ однозначно сопостовляет некий $y\in Y,$ называется {\bf отображением (функцией)} определённой на $X$ со значениями в $Y$ и обозначается: $f:X \rightarrow Y$ или $X \xrightarrow{\text{f}}Y$
 \end{Definition}
 
 Элемент $y\in Y,$ соответсвующий $x\in X$ называется значением отображения $f$ в точке $x$ и записывается: $y=f(x).$
@@ -322,7 +327,7 @@ x\in c\left(A\cup B\right) \Leftrightarrow x\notin A\cup B \Leftrightarrow \neg\
 
 Если имеется функция $f:X \rightarrow Y,$ то тогда множество $X$ называется областью определения, а $Y$ областью прибытия функции $f.$
 
-\subparagraph{Примеры:}
+\par\medskip \textbf{Примеры:}
 \begin{enumerate}
 \item Пусть область определения совпадает с областью прибытия и равна множеству вещественных чисел $X=Y=\mathbb{R},$ и функцию $f:X \rightarrow Y.$ Как видно из примера, область прибытия не всегда совпадает с множеством значений.
 \item Проектирование декартова произведения множеств.
@@ -355,26 +360,66 @@ $$f\left(f^{-1}(B)\right) \subseteq B$$
 
 \subparagraph{Инъекция и Сюръекция}
 \begin{Definition}
-Имеется функция $f:X \rightarrow Y.$ Если $f(X)=Y,$ то $f$ -- сюръекция.
+Имеется функция $f:X \rightarrow Y.$ Если $f(X)=Y,$ то $f$ -- {\bf сюръекция}.
 \end{Definition}
 \begin{Definition}
-Если имеется функция $f:X \rightarrow Y$ и $\forall x_1, x_2 \in X \; x_1 \neq x_2 \Rightarrow f(x_1)\neq f(x_2),$ то тогда функция $f$ называется инъекцией.
+Если имеется функция $f:X \rightarrow Y$ и $\forall x_1, x_2 \in X \; x_1 \neq x_2 \Rightarrow f(x_1)\neq f(x_2),$ то тогда функция $f$ называется {\bfинъекцией}.
 \end{Definition}
 \begin{Definition}
-$f$ -- биекция, если $f$ сюръекция и инъекция.
+$f$ -- {\bf биекция}, если $f$ сюръекция и инъекция.
 \end{Definition} 
 
 \subparagraph{Композиция отображений}
 Пусть имеются две функции: $f:X \rightarrow Y$ и $g:Y \rightarrow Z.$
 Определим отображение $h:X \rightarrow Z$ следующим образом: $\forall x\in X \; h(x)=g(f(x)),$ тогда $h=g\circ f$ и называется композицией $f$ и $g.$
 
-%КОММУТАТИВНАЯ ДИАГРАММА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-\subparagraph{Обратое отображение}
-%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-\subparagraph{График отображения}
-%КАРТИНКА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\xymatrix{
+& X \ar[r]^f \ar[dr]^h
+& Y \ar[d]^g \\
+&
+& Z
+}
+\newpage
+\par\medskip \textbf{Пример:}\par
+Возьмём $X=Y=Z=\mathbb{R}$ $$f:X\rightarrow Y \quad x\rightarrow y = x+1$$ $$g:Y\rightarrow Z \quad y\rightarrow z=2y.$$ Тогда $$(g\circ f)(x)=g(f(x))=g(x+1)=2x+2$$ $$(f\circ g)(x)=f(g(x))=f(2y)=2y+1$$
+Как видно, операция композиция не коммутативно, но ассоциативна: $(f\circ g)\circ h = f\circ(g\circ h)=f\circ g\circ h.$
 
-%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\subparagraph{Обратое отображение}
+\begin{Definition}
+Пусть функция $f:X\to Y$ биекция. Построим отображение $g:Y\to X$ такое, что для любого $y\in Y$ найдётся $x\in X$ и $f(x)=y.$ Такой $x$ обязательно найдётся, так как $f$ сюръекция и, более того, найдётся только один, так как $f$ инъекция: $\forall y\in Y \; \exists! x\in X: \; f(x)=y.$
+\end{Definition}
+
+Полагая $g(y)=x,$ построенное отображение $g$ будет называться обратным к $f$ и обозначаться $f^{-1}.$
+
+Заметим, что отображение $g=f^{-1}$ $\Leftrightarrow$ $\forall x\in X \;\; \forall y\in Y \;\; y=f(x) \Leftrightarrow x=g(y).$\\
+
+\par\medskip \textbf{Пример:}\par
+Пусть $f:\mathbb{R}\rightarrow\mathbb{R} \; y=2x+1$
+
+$y=f(x) \Leftrightarrow y=2x+1 \Leftrightarrow \frac{y-1}{2}=x \Leftrightarrow x=g(y),$ тогда $\forall y\;\; g(y)=\frac{y-1}{2}$ и $g=f^{-1}.$
+\begin{Definition}
+Отображение $I:X\rightarrow X$ такое, что $\forall x \; I(x)=x$ называется тождественным отображением.
+
+Для уточнения можно писать $I=I_X,$ где $X$ множетсво.
+\end{Definition}
+
+$f:X\rightarrow Y \quad f\circ I_X=f$ и $I_X\circ f=f$ -- тождественное отображение является единицей для операции композиции.
+
+\par\medskip \textbf{Очевидный пустяк:}\par
+$g=f^{-1} \Leftrightarrow g\circ f=I_X$ и $f\circ g = I_Y$ 
+\par\medskip \textbf{Пример:}\par
+
+$f(x)=2x+1 \quad g(y)=\frac{y-1}{2}$ $$g\circ f=g(f(x))=g(2x+1)=x=I_X$$ $$f\circ g=f(g(x))=f(\frac{y+1}{2})=y=I_Y.$$
+
+\newpage
+\subparagraph{График отображения}
+Пусть имеется функция $f:X\rightarrow Y,$ тогда графиком функции называют $\Gamma_f=\{(x,y)\in X\times Y\mid x\in X, y=f(x)\}.$
+\par\medskip \textbf{Пример:}\par
+Возмём $f(x)=y=2x+1$ $X=Y=\mathbb{R}.$ 
+\begin{figure}[h!]
+\center{\includegraphics[scale=0.4]{sec1subgraphicotobr.eps}}
+\end{figure}
+
 \subsection{Вещественные  числа}
 $\mathbb{R}$ -- множество вещественных чисел.
 
@@ -416,16 +461,92 @@ $\mathbb{R}$ -- множество вещественных чисел.
 $x\leq y \Rightarrow x+z\leq x+z;$
 
 $x\leq y \Rightarrow xz\leq yz.$
-
+\newpage
 {\bf \RomanNumeralCaps{6}.} Аксиома полноты.
 
 Пусть $X, Y\subset \mathbb{R}$ и $\forall x\in X \; \forall y\in Y \; x\leq y.$ Тогда существует $c\in\mathbb{R}: \; \forall x\in X \; \forall y\in Y \; x\leq c\leq y.$
-%КАРТИНКА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-\begin{Definition}
+\begin{figure}[h]
+\center{\includegraphics[scale=0.7]{sec1complitnessaxiom.eps}}
+\end{figure}
 
+
+\begin{Definition}
+Пусть $E$ непустое подмножество вещественных чисел.
+
+Число $M\in\mathbb{R}$ называется верхней границей $E,$ если $\forall x\in E\; x\leq M.$
+
+Множество $E$ называется ограниченным сверху, если оно имеет верхнюю границу.
+
+Число $m\in\mathbb{R}$ называется нижней границей $E,$ если $\forall x\in E\; m\leq x.$
+
+Множество $E$ называется ограниченным снизу, если оно имеет нижнюю границу.
+
+Наконец, множество $E$ называется ограниченным, если оно ограничено снизу и сверху: $\forall x\in E\; m\leq x\leq M.$
 \end{Definition}
 
+\begin{Theorem}
+\begin{enumerate}
+\item Если $E$ ограничено сверху, тогда среди верхних границ найдётся наименьшая.
+\item Если $E$ ограничено снизу, тогда есть наибольшая нижняя граница.
+\end{enumerate}
+\end{Theorem}
+\begin{proof}
+\begin{enumerate}
+\item Пусть $E$ ограничено сверху. За $E^s$ обозначим множество верхних границ $E.$ Тогда $\forall x\in E$ и $\forall y\in E^s \;\; x\leq y,$ значит, по аксиоме полноты $\exists c: \; \forall x\in E\; y\in E^s \quad x\leq c\leq y.$ При этом $c$ является верхней границей, так как $x\leq c$ и $c$ является наименьшей верхней границей, так как $c\leq y.$
+\item Аналогично доказывается существование наибольшей нижней границы.
+\end{enumerate}
+\end{proof}
 
+\begin{Definition}
+\begin{enumerate}
+\item Если $E$ ограничено сверху, тогда существует наименьшая верхняя граница, которая называется верхней гранью, точной верхней границей или супремумом и обозначается $\sup E$ или $\sup\limsup{x\in E}X.$
+\item Если $E$ ограничено снизу, тогда существует наибольшая нижняя границы, которая называется нижней гранью, точной нижней границей или инфимумом и обозначается $\inf E$ или $\inf\liminf{x\in E}X.$
+\end{enumerate}
+\end{Definition}
+
+\begin{Theorem}[Описание граней на $\varepsilon$-языке.]
+Пусть $E$ непустое множество. 
+\begin{enumerate}
+\item $M=\sup E \Leftrightarrow \forall x\in E\; x\leq M$ и $\forall\varepsilon>0\; \exists x_0\in E: \; x_0>M-\varepsilon.$
+\item $m=\inf E \Leftrightarrow \forall x\in E \; x\geq m$ и $\forall\varepsilon\; \exists x_0\in E: \; x_0<m+\varepsilon.$
+\end{enumerate}
+\end{Theorem}
+\begin{proof}
+$\Rightarrow:$\\
+$m=\inf E, m$ -- нижняя граница: $\forall x\in E\; x\geq m.$ Значит $\forall\varepsilon>0\; m+\varepsilon>m$ и $m+\varepsilon$ -- не нижняя граница, то есть $\exists x_0\in E: \; x<m+\varepsilon.$\\
+$\Leftarrow:$\\
+$\forall x\in E$ и $x\geq m \;\; \forall\varepsilon>0\; \exists x\in E: \; x<m_\varepsilon.$ Тогда $m$ -- самая большая нижняя граница?
+\par $\forall m'>m \; \varepsilon=m'-m>0 \; \exists x\in E$ (по условию), такой, что $x<m+\varepsilon = m+m'-m=m' \Rightarrow m'$ -- не нижняя граница, значит $m$ -- наибольшая нижняя граница (инфимум).
+\end{proof}
+
+\newpage
+\par\medskip \textbf{Несколько предложений:}\par
+\begin{enumerate}
+\item $E_1\subset E$ -- ограничено сверху, тогда $E_1$ -- ограничено сверху и $\sup E_1\leq E$
+\begin{proof}
+$E$ -- ограничено сверху, значит $\exists M: \; \forall x\in E \; x<M \quad \forall x\in E_1 \; x\in E\; x\leq M$ то есть $E_1$ -- ограничено сверху.
+\par $\forall x\in E_1\; x\in E \; x\leq \sup E \Rightarrow \sup E$ -- верхняя граница $E_1 \Rightarrow \sup E_1\leq \sup E.$
+\end{proof}
+\item $x_0\in\mathbb{R} \; E\subseteq\mathbb{R} \qquad E+x_0=\{x+x_0\mid x\in E\}$ -- сдвиг $E$ на $x_0.$
+\par Если $E$ -- ограничено, то:
+$$\sup\left(E+x_0\right)=\sup E+x_0$$
+$$\inf\left(E+x_0\right)=\inf E+x_0$$
+\item $\lambda\in\mathbb{R} \; E\subseteq\mathbb{R}, E\neq\varnothing \qquad \lambda E=\{\lambda x\mid x\in E\}.$
+\par Если $E$ -- ограничено, то:
+$$\sup\left(\lambda E\right)=\lambda\sup E$$
+$$\inf\left(\lambda E\right)=\lambda\inf E$$
+\end{enumerate}
+
+\begin{Definition}
+$x_0\in E$ называется наибольшим элементом множества $E,$ если $\forall x\in E\; x\leq x_0.$ Тогда $x_0=\max E.$
+\end{Definition}
+
+\par $x_0=\max E\Rightarrow x_0=\sup E$
+\par $x_0=\sup E,\; x_0\in E \Rightarrow x=\max E,$ однако, если $x_0=\sup E$ и $x_0\notin E,$ то $x_0\neq\max E.$
+
+\par\medskip \textbf{Несколько предложений:}\par
+$\sup[0, 1] = \max[0, 1] = 1$
+\par $\sup[0, 1) = 1 \neq \max[0, 1),$ так как $1\notin[0, 1).$ Более того, в $[0, 1)$ нет наибольшего элемента, так как если взять любое $M\in[0, 1),$ то $\frac{M+1}{2}\in[0, 1) \Rightarrow M$ не наибольший.
 \subsection{Промежутки в множестве $\mathbb{R}$}
 Промежуток есть множество одного из следующих типов:
 \begin{enumerate}
@@ -439,15 +560,166 @@ $x\leq y \Rightarrow xz\leq yz.$
 \item $[-\infty,b) =\{x\in\mathbb{R}\mid x<a\}$ -- луч
 \item $[-\infty,+\infty) =\mathbb{R}$ 
 \end{enumerate}
+
+$\Delta\subseteq\mathbb{R}, \Delta\neq\varnothing$ -- промежуток $\Leftrightarrow \forall a, b\in\Delta\; \forall x \;\; a<x<b \Rightarrow x\in\Delta.$
 \subsection{Геометрическая интерпретация}
 $\mathbb{R}$ изображается прямой с отмеченными точками $0$ и $1.$
-%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\begin{figure}[h]
+\center{\includegraphics[scale=0.7]{sec1geominterpr.eps}}
+\end{figure}
 \subsection{Абсолютная величина вещественного числа}
+\begin{Definition}
+\begin{equation*}
+\mid x\mid = 
+ \begin{cases}
+   x, & x>0\\
+   0, & x=0\\
+   -x, & x<0
+ \end{cases}
+\end{equation*}
+\end{Definition}
+\par\medskip \textbf{Свойства:}\par
+\begin{enumerate}
+\item $\mid x\mid \;=\max\{x;\; -x\}$
+\item $\mid x\mid\;\leq 0 \qquad \mid x\mid\;=0 \Leftrightarrow x=0$
+\item $\mid x\mid \;\;\mid -x\mid$
+\item $\mid xy\mid\; =\;\mid x\mid\mid y\mid$
+\item $\forall x\quad -\mid x\mid\leq x\leq\mid x\mid,$ действительно, $\mid x\mid=\max\{x;\; -x\} \;\; \mid x\mid\;\geq x\;\;\mid x\mid\;\geq -x\;\; x\geq-\mid x\mid$
+\item $a>0 \;\; \mid x\mid\;\leq a \Rightarrow -a\leq x\leq a$\\
+$\mid x\mid\;\leq a \Leftrightarrow \max\{x;\; -x\}\leq a \Leftrightarrow x\leq a \mathbin{\&} -x\leq a \Leftrightarrow x\leq a\mathbin{\&} x\geq -a \Leftrightarrow -a\leq x\leq a$
+\item (неравенство треугольника) $\mid x+y\mid
+\;\leq\;\mid x\mid+\mid y\mid$
+\begin{proof}
+$-\mid x\mid\leq x\leq\mid x\mid$\\
+$-\mid y\mid\leq y\leq\mid y\mid$\\
+$-(\mid x\mid+\mid y\mid)\leq x+y\leq\;\mid x\mid+\mid y\mid,$ по свойству $6,$ обозначив за $a=\;\mid x\mid+\mid y\mid,$ получим $\mid x+y\mid\;\leq\;\mid x\mid+\mid y\mid.$
+\end{proof}
+\item $\mid x-y\mid\;\leq\;\mid x\mid+\mid y\mid$
+\item $\mid x-y\mid\;\leq\;\mid\mid x\mid-\mid y\mid\mid$
+\begin{proof}
+$\mid x\mid\;=\;\mid(x-y)+y\mid\;\leq\;\mid x-y\mid+\mid y\mid \qquad \mid x\mid-\mid y\mid\;\leq\;\mid x-y\mid.$\\
+Аналогично $\mid y\mid-\mid x\mid\;\leq\;\mid x-y\mid,$ таким образом $\max\{\mid x\mid+\mid y\mid, \mid y\mid=\mid x\mid\}\leq\l\mid x+y\mid,$ отсюда $\mid\mid x\mid -\mid y\mid\mid\;leq\;\mid x-y\mid.$
+\end{proof}
+\item $\mid x+y\mid\; \leq\;\mid\mid x\mid-\mid y\mid\mid$
+\end{enumerate}
 
+\begin{Proposition}
+Пусть $E\subset\mathbb{R}, \; E$ ограничено $\Leftrightarrow \; \exists M: \; \forall x\in E \; \mid x\mid\;\leq M.$
+\end{Proposition}
+\begin{proof}
+$\Rightarrow:$\\
+Так как $E$ ограничено, то $\exists m, M: \; \forall x\in E \; m\leq x\leq M.$ Обозначим за $M_1=\max\{\mid m\mid;\;\mid M\mid\}.$ Теперь $\forall x\in E \; \mid x\mid\;\leq M_1,$ таким образом $\forall x\in E \; m\leq x<M\leq\;\mid M\mid\;\leq M_1$ и $-x\leq-m\leq\;\mid m\mid\;\leq M_1.$ \\
+$\Leftarrow:$\\
+$\forall x \; \mid x\mid\;\leq M, \;\; -M\leq x\leq M$ откуда сразу следует ограниченность $E.$
+\end{proof}
 \subsection{Натуральные числа}
+\begin{Definition}
+Множество $E\in\mathbb{R}$ называется индуктивным, если $\forall x\in E \; x+1\in E.$
+
+$\mathbb{N}$ -- наименьшее индуктивное множество, содержащее $1\in\mathbb{N},$ тогда $\mathbb{N}$ называется натуральным рядом, а элементы этого множества -- натуральными числами.
+
+$\mathbb{N}=\bigcap\limits_{1\in E}E, \; E$ -- индуктивно. 
+\end{Definition}
+
+\par\medskip \textbf{Примеры индуктивных множеств}\par
+$\mathbb{R};$
+
+$[1, +\infty).$
+
+\subsubsection{Принцип математической индукции}
+Пусть $E$ подмножество натуральных чисел $E\subset\mathbb{N}$ и $1\in E.$ Тогда, если $\forall n\in E$\\ $n+1\in E,$ то $E=\mathbb{N}.$
+
+Доказательства методом математической индукции:
+\begin{enumerate}
+\item База: $n=1\in\mathbb{N};$
+\item Переход: если утверждение справедливо для некого $n,$ то оно справедливо и для $n+1,$ тогда $\forall n$ утверждение выполнено.
+\end{enumerate}
+
+\begin{Proposition}
+Неравенство между средним арифметическим и средним геометрическим.
+
+$a_1, a_2,\ldots, a_n\in\mathbb{R} \;\;\; \frac{a_1+a_2+\ldots+a_n}{n}$
+\smallskip
+\par $\forall i \; a_i>0 \;\;\; \sqrt[n]{a_1\cdot a_2\cdot\cdots\cdot a_n}$
+
+\smallskip
+Тогда $\sqrt[n]{a_1\cdot a_2\cdot\cdots\cdot a_n}\leq\frac{a_1+a_2+\ldots+a_n}{n},$ причём равенство достигается только при $a_1=a_2=\ldots=a_n.$
+\end{Proposition}
+
+\begin{Proposition}
+$a_1,\ldots, a_n>0,$ тогда $a_1+\ldots+a_n\geq n$ и равенство достигается только при $a_1=\ldots=a_n=1.$
+\end{Proposition}
+\begin{proof}
+Если $a_1=\ldots=a_n=1$ -- очевидно.
+
+Пусть не все числа равны $1.$ Будем считать, что $a_{n-1}<1, a_n>1.$
+\begin{enumerate}
+\item База: $n=2\;$ $(1-a_1)(a_2-1)>0,\;$ $a_1+a_2-1-a_1a_2>0,\;$ $a_1+a_2-2>0,\;$ $a_1+a_2-2>0,\;$ $a_1+a_2>2$ что и требовалось доказать.
+\item Переход: пусть для $n$ чисел неравенство выполнено. 
+
+$a_1,\ldots, a_n, a_{n+1}>0\;$ $a_n<1 \; a_{n+1}>1.$ Применим индукцию:
+
+$a_1+\ldots+a_{n-1}+a_n\cdot a_{n+1}\geq n,\;$ $(1-a_n)(a_{n+1}-1)>),\;$ $a_n+a_{n+1}-a_na_{n+1}>1,\;$ $a_1+\ldots+a_{n+1}>n+1.$  
+\end{enumerate}
+\end{proof}
+
+Теперь докажем предложение $2:$
+\begin{proof}
+$a_1,\ldots, a_n>0.$ Обозначим $A=\sqrt[n]{a_1\cdot a_2\cdot\cdots\cdot a_n}$ и $b_k=\frac{a_k}{A}, k=1,..,n.$ 
+
+Легко заметить, что $b_1\cdot b_2\cdot\ldots\cdot b_n\cdot\frac{a_1\cdot\ldots\cdot a_n}{A^n}=1.$
+
+Как видно, $b_1,\ldots, b_n$ -- удовлетворяют условию предложения $2,$ тогда $b_1+\ldots+b_n\geq n, \;\; a_1+\ldots+a_n\geq nA$
+\par $\frac{a_1+a_2+\ldots+a_n}{n}\geq\sqrt[n]{a_1\cdot a_2\cdot\cdots\cdot a_n}$
+\end{proof}
+
+\par\medskip \textbf{Свойства множества $\mathbb{N}:$}\par
+\begin{enumerate}
+\item В $\mathbb{N}$ выполнимы операции $"+", "\cdot": \;\; \forall n, m\in\mathbb{N} \; n+m\in\mathbb{N}, \; n\cdot m\in\mathbb{N};$
+\item $1=\min\mathbb{N},$ действительно $1\in[1, +\infty)$ -- индуктивно, значит $\mathbb{N}\subset[1, +\infty)\;\; \forall n\in\mathbb{N} \; n\leq1;$
+\item $\forall n\in\mathbb{N}\;\; n\neq 1 \Rightarrow n-1\in\mathbb{N};$
+\item $\forall n\in\mathbb{R} \; \mathbb{N}\cap (n, n=1)=\varnothing;$
+\item $E\subseteq\mathbb{R} \Rightarrow E$ ограничено снизу, тогда $E$ имеет наименьший элемент.
+\item $E\subseteq\mathbb{R} \Rightarrow E$ ограничено сверху, тогда $E$ имеет наибольший элемент.
+\item Принцип Архимеда.
+\par $\forall\varepsilon>0\; \varepsilon\mathbb{N}$ не ограничено сверху. В частности $\mathbb{N}$ не ограниченное сверху множество. 
+
+$\varepsilon\mathbb{N}=\{\varepsilon n\mid n\in\mathbb{N}\}=\{\varepsilon, 2\varepsilon, 3\varepsilon,\ldots\}$
+\begin{proof}
+Пусть $\varepsilon\mathbb{N}$ ограничено сверху, тогда $M=\sup\varepsilon\mathbb{N},$ но обязательно будет существовать $n\in\mathbb{N}: \; n\varepsilon>M\varepsilon,$ если нет, то $(1+n)\varepsilon>M.$ Значит есть $k=n+1\in\mathbb{N}: \; k\varepsilon>M$ -- противоречие
+\end{proof}
+
+\begin{Corollary}
+$\forall\varepsilon>0 \; \exists n\in\mathbb{N}: \;\; \frac{1}{n}<\varepsilon \qquad \left(\frac{1}{n}<\varepsilon \Leftrightarrow n\varepsilon>1\right).$
+\end{Corollary}
+
+\begin{Corollary}
+$\forall n \; 0\leq x<\frac{1}{n} \Rightarrow x=0.$
+\end{Corollary}
+\end{enumerate}
 
 \subsection{Целые числа}
+\begin{Definition}
+Множество целых чисел $\mathbb{Z}=\mathbb{N}\cup\{0\}\cup\{-\mathbb{N}\}.$
+\end{Definition}
 
+\par\medskip \textbf{Свойства $\mathbb{Z}:$}\par
+\begin{enumerate}
+\item $\forall m, n\in \mathbb{Z}$ определены $m+n, m-n, m\cdot n \in\mathbb{Z};$
+\item $\forall n\in\mathbb{Z}\;\; \mathbb{Z}\cap(n, n+1)=\varnothing;$
+\item Всякое ограниченное сверху множество целых чисел имеет наибольший элемент.
+\par Всякое ограниченное снизу множество целых чисел имеет наименьший элемент.
+\begin{proof}
+Пусть $E\subset\mathbb{Z}, E$ -- ограничено сверху и $M=\sup E.$ Тогда $\exists n\in E \; n>M-1 \;\; n =\max E.$ Если найдётся $m\in E$ такой, что $m>n, n\leq m\leq n+1,$ то получится, что $n\in(n, n+1)$ -- противоречие, значит $n$ действительно наибольший элемент $E.$
+
+Аналогично доказывается про наименьший элемент.
+\end{proof}
+\item Пусть $\rho>0, x\in\mathbb{R},$ по принципу Архимеда $\exists m\in\mathbb{Z}: \; m\rho>x.$ Такие $x$ образуют ограниченное снизу множество. Выберем наименьшее $m:\;\; m\rho>x \mathbin{\&} (m-1)\rho\leq x.$ Примем $n=m-1,$ тогда $n\rho\leq x< (n+1)\rho.$ Выходит, что $x\in[n\rho, (n+1)\rho).$ 
+
+Таким образом $\mathbb{R}$ разбилось на непересекающиеся промежутки $[n\rho, (n+1)\rho)], n\in\mathbb{Z}.$
+
+При $\rho=1 \; \forall x\in\mathbb{R} \; \exists! n: \; x\in[n,n+1),$ тогда $n=[x]$ называется целой частью $x$ или антье $x,$ $\{x\}=x-[x]$ называется дробной частью $x.$
+\end{enumerate}
 \subsection{Рациональные числа}
 
 \begin{Definition}
@@ -485,7 +757,7 @@ $\mathbb{Q}$ плотно в $\mathbb{R}.$
 Множества $X$ и $Y$ равномощны, если $\exists f:X\rightarrow Y$ -- инъективное отображение. Записывается как $X\sim Y; \mid X\mid=\mid Y\mid$ или как $cardX=cardY.$ (\textit{кардинальное число $X$})
 \end{Definition}
 
-Заметим, что если $X\subseteq Y,$ то $\mid X\mid \leq\mid Y\mid.$
+Заметим, что если $X\subseteq Y,$ то $\mid X\mid \leq\mid Y\mid.$\\
 
 \begin{Proposition}
 Множество натуральных чисел $\mathbb{N}$ равномощно множеству чётных чисел $\mathbb{N}_{2n}.$
@@ -540,7 +812,7 @@ $\mathbb{Q}$ плотно в $\mathbb{R}.$
 
 Если множество $X$ конечно или счётно, то $X$ называется не более чем счётным множеством.
 
-Пусть $X$ счётно, тогда $\mathcal{X}$ несчётно.
+Пусть $X$ счётно, тогда $\mathcal{X}$ несчётно.\\
 
 \begin{Proposition}
 $\mathbb{Z}$ -- счётно.
@@ -603,320 +875,3 @@ $\mathbb{Q}$ счётно.
 \end{Definition}
 
 \newpage
-
-\begin{center}
-\section{\LARGE{\bf Предел последовательности}}
-\end{center}
-\epigraph{\textit{Предел один, а у нас перерыв.}}
-{-- Моисеев А.А.}
-
-
-\begin{Definition}
-Числовая последовательность это отображение $\mathbb{N} \rightarrow \mathbb{R}.$ Для значения этого отображения (последовательности) можно использовать запись $x_n;$ сама последовательность обозначается, как $\{x_n\}_{n=1}^{\infty}.$
-\end{Definition} 
-
-Пусть $\{x_n\}_{n=1}^{\infty}$ -- последовательность, тогда множеством значений последовательности будет $X=\{x\in\mathbb{R}\mid\exists n\in\mathbb{N} \; x=x_n\}.$
-
-Последовательность называется ограниченной сверху (снизу), если соответсвующим свойством обладает её множество значений: 
-
-Последовательность $\{x_n\}_{n=1}^{\infty}$ ограничена, если $\exists m, M \; \forall n\in\mathbb{N} \; m\leq x_n\leq M$ или $\exists M: \; \forall n\in\mathbb{N} \; \mid x_n\mid<M.$
-
-\paragraph{Пример}
-\begin{enumerate}
-\item $x_n=\frac{1}{n}$ --ограничена, ведь $0\leq\frac{1}{n}\leq1.$
-\item $x_n=n^2$ -- ограничена снизу: $x_n\geq 0,$ но не сверху.
-\end{enumerate}
-
-\begin{Definition}[Предел последовательности]
-Число $a\in\mathbb{R}$ называется пределом последовательности $\{x_n\}_{n=1}^{\infty},$ если для любого положительного числа можно подобрать такой номер $N,$ что разность всякого члена последовательности с большим номером и $a$ будет по модулю меньше этого положительного числа: $$\forall \varepsilon>0 ;\ \exists N: \; \forall n>N \; \mid x_n-a\mid<\varepsilon.$$
-\end{Definition}
-
-Последовательность, имеющая предел, называется сходящейся.
-Последовательность, не имеющая предела, называется расходящейся.
-Третьего не дано.
-
-\paragraph{Пример}
-$\frac{1}{n} \xrightarrow[n\rightarrow \infty]{} 0.$
-
-Действительно, возьмём $N=\left[\frac{1}{\varepsilon}\right] +1.$ Пусть $n>N,$ тогда $n>\left[\frac{1}{n}\right], \; n>\frac{1}{\varepsilon}, \; \frac{1}{n}<\varepsilon.$
-
-\begin{Definition}[Окрестность]
-\begin{enumerate}
-\item Возьмём точку $a\in\mathbb{R},$ тогда правильной $\varepsilon$ окрестностью точки $a$ называется $O_{\varepsilon}(a)=(a-\varepsilon, a+\varepsilon) = \{x\in\mathbb{R}\mid \; \mid x-a\mid<\varepsilon\}.$ Иногда можно окрестность обозначать как $V,$ дело вкуса.
-\item $O\in\mathbb{R}$ над окрестность точки $a,$ если $\exists\varepsilon>0: \; O_{\varepsilon}(a)\subset O.$
-\end{enumerate}
-\end{Definition}
-
-\paragraph{Пара свойств.}
-
-Если $O_1 \subset O_2$ и $V_1$ окрестность точки $a$, то $V_2$ тоже окретсность точки $a.$
-
-Если $O_1$ и $O_2$ окрестности точки $a,$ то $V_1\cap V_2$ тоже окрестность точки $a.$
-
-\begin{Definition}
-Последовательность $x_n \xrightarrow[n\rightarrow \infty]{} a,$ если $\forall O$ -- окрестность точки $a\;$  $\exists N, \; \forall n>N \Rightarrow x_n\in O.$
-\end{Definition}
-
-\subparagraph{Простейшие свойста пределов}
-\begin{enumerate}
-\item Предел стационарной последовательности. 
-
-$\{x_n\}_{n=1}^{\infty}, \; x_n=a.$ Пусть $n=n_0+1, n_0+2,\ldots,$ тогда $x_n\rightarrow a.$ Действительно, $\forall\varepsilon \; N=n_0 \; n>N \; x_n=a \; \mid x_n-a\mid=0<\varepsilon.$
-\item Единственность предела:  $x_n\rightarrow a$ и $x_n\rightarrow b \; \Rightarrow a=b.$
-\begin{proof}
-Пусть $a\neq b,$ тогда рассмотрим $O_a$ и $O_b$ -- окрестности точек $a$ и $b.$ Возьмём точку $c=\frac{a+b}{2}$ и окрестности $O_a = (-\infty, c)$ и $O_b = (c, \infty).$ Тогда, так как $a$ и $b$ пределы, найдутся такие $N_1, N_2,$ что при любом $n>N_1$ и $n>N_2$ член последовательности $x_n$ будет принадлежать одновременно непересекающимся множествам $O_a$ и $O_b.$ Противоречие.
-\end{proof}
-\item Ограниченность сходящейся последовательности. Если $\{x_n\}_{n=1}^{\infty}$ сходится, то $\{x_n\}_{n=1}^{\infty}$ ограничена.
-\begin{proof}
-Пусть $x_n \xrightarrow[n\rightarrow\infty]{} a.$ Возьмём $\varepsilon=1,$ тогда существует $n_0: \; \mid x_n-a\mid<1,$ при $n=n_0+1, n_0+2,\ldots$
-
-При таких $n\; \mid x_n\mid\leq\mid a\mid+1.$ Возьмём число $M=\max\{\mid x_1\mid, \mid x_2\mid,\ldots,\mid x_0\mid, \mid a\mid+1\}.$
-
-Теперь $\forall n \; \mid x_n\mid<M$
-
-если $n\leq n_0,$ то $\mid x_n\mid\leq M,$ так как $M$ максимум таких чисел.
-
-если $n>n_0,$ то $\mid x_n\mid<\mid a\mid+1\leq M.$
-\end{proof}
-
-Однако может случиться так, что последовательность ограничена и при этом расходится: $x_n=(-1)^{n}.$
-
-\item Подпоследовательность.
-
-\begin{Definition}
-Пусть $\{x_n\}_{n=1}^{\infty}$ -- числовая последовательность. Рассмотрим $\{n_k\}_{k=1}^{\infty}$ -- строго возрастающая последовательность натуральных чисел. Построим последовательность $\{y_k\}_{k=1}^{\infty}: \; y_k=x_{n_k}, k=1, 2,\ldots$ Тогда $\{y_k\}$ -- подпоследовательность $\{y_n\}.$
-\end{Definition}
-\end{enumerate}
-
-\subparagraph{Пример}
-Имеется последовательность $\{x_n\}_{n=1}^{\infty}.$
-\begin{enumerate}
-\item Возьмём $n_k=n_0+k$ и построим подпоследовательность $y_k=x_{n_0+k}.$ Таким образом мы отбросили первые $n_0$ элементов последовательности.
-\item $n_k=x_{2k}$ -- только чётные элементы.
-
-$n_k=x_{2k-1}$ -- только нечётные элементы.
-\end{enumerate}
-
-\begin{Proposition}
-Подпоследовательность $\{y_k\}$ сходящейся последовательности $\{x_n\}$ сходится к тому же пределу, что и сама последовательность.
-\end{Proposition}
-\begin{proof}
-Докажем, что если $\{x_n\}\rightarrow a,$ то и $y_k\rightarrow a (y_k=x_{n_k}.$
-
-Если $n_k$  строго возрастающая последовательность, то $n_k\geq k.$ Так как $\{x_n\}$ сходится, то $\forall\varepsilon>0 \; \exists N: \; \forall n>N \Rightarrow\mid x_n-a\mid<\varepsilon.$ Пусть $k>N,$ тогда $n_k\geq k>N \Rightarrow n_k>N,$ значит $\mid x_{n_k}-a\mid<\varepsilon \; x_{n_k}=y_k \Rightarrow \mid u_n-a\mid<\varepsilon,$ то есть $y_k \xrightarrow[n\rightarrow\infty]{} a.$
-\end{proof}
-
-\begin{Remark}
-Расходящаяся последовательность может иметь сходящуюся подпоследовательность:
-
-$x_n=(-1)^k: \; x_{2k}=1$ и $x_{2k-1}=-1.$
-\end{Remark}
-
-\subsection{Сходимость и арифметические операции}
-\begin{Theorem}[Предел суммы]
-
-Пусть имеются сходящиеся подпоследовательности $\{x_n\}$ и $\{y_n\}: \; x_n\rightarrow a$ и $y_n\rightarrow b,$ тогда последовательность $\{z_n\}=x_n+y_n$ сходится к $a+b.$
-\end{Theorem}
-\begin{proof}
-$x_n\rightarrow a \Rightarrow \forall \frac{\varepsilon}{2}>0 \; \exists N_1: \; \forall n>N_1 \; \mid x_n-a\mid<\frac{\varepsilon}{2}.$
-
-$y_n\rightarrow a \Rightarrow \forall \frac{\varepsilon}{2}>0 \; \exists N_2: \; \forall n>N_2 \; \mid y_n-b\mid<\frac{\varepsilon}{2}.$
-
-Возьмём $n>\max(N_1, N_2),$ сложим эти два неравенства и воспользуемся неравенством треугольника:
-
-$\varepsilon=\frac{\varepsilon}{2}+\frac{\varepsilon}{2}>\mid x_n-a\mid+\mid y_n-b\mid \geq \mid x_n+y_n-(a+b)\mid = \mid z_n-(a+b),$ откуда $z_n \rightarrow a+b.$
-\end{proof}
-
-\begin{Theorem}[Предел произведения]
-Пусть есть две последовательности $\{x_n\}$ и $\{y_n\},$  рассмотрим последовательность $\{z_n\}: \; z_n=x_n\cdot y_n.$ Тогда, если $x_n\rightarrow a, \; y_n\rightarrow b,$ то последовательность $\{z_n\}$ сходится и сходится к $z_n\rightarrow a+b.$
-\end{Theorem}
-\begin{proof}
-Предварительная оценка: $\mid z_n-ab\mid=\mid x_n y_n-ab\mid=\mid(x_ny_n-ay_n)+(ay_n-ab)\mid\leq\mid y_n\mid\mid x_n-a\mid+\mid a\mid\mid y_n-b\mid.$ Так как $\{y_n\}$ -- сходится, то $\exists M: \; \mid y_n\mid<M \; \forall n\in\mathbb{N},$ более того, можно считать, что $\mid a\mid<M.$
-
-Так как $x_n\rightarrow a,$ то $\forall\varepsilon\;\exists N_1: \; \forall n>N_1 \Rightarrow\mid x_n-a\mid<\frac{\varepsilon}{2M}.$
-
-Из того, что $y_n\rightarrow b$ следует, что $\exists N_2: \; \forall n>N_2 \Rightarrow \mid y_n-b\mid<\frac{\varepsilon}{2M}.$
-
-Возьмём $N=\max(N_1, N_2),$ таким образом, если $n>N,$ то будут выполнены оба неравенства одновременно.
-
-Пусть $n>N,$ тогда $\mid z_n-ab\mid\leq\mid x_n=a\mid\mid y_n\mid+\mid a\mid\mid y_n-b\mid<\frac{\varepsilon}{2M}M+\frac{\varepsilon}{2M}M=\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon \Rightarrow \mid z_n-ab\mid<\varepsilon,$ то есть $z_n\xrightarrow[n\rightarrow\infty]{} ab.$
-\end{proof}
-
-\begin{Theorem}[Предел частного]
-Пусть имеются сходящиеся подпоследовательности $\{x_n\}$ и $\{y_n\}: \; x_n\rightarrow a$ и $y_n\rightarrow b,$ тогда последовательность $\{z_n\}=\frac{x_n}{y_n}, y_n\neq 0, n\in\mathbb{N}$ сходится к $\frac{a}{b}.$
-\end{Theorem}
-\begin{proof}
-%!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-\end{proof}
-\begin{Corollary}
-Если $x_n\rightarrow a, y_n\rightarrow b,$ то $z_n=\lambda x_n+\mu y_n$ сходится и $z_n\rightarrow\lambda a+\mu b.$
-\end{Corollary}
-\subsection{Сходимость и неравенства}
-\begin{Theorem}
-Если $x_n\rightarrow a, y_n\rightarrow b, a<b,$ тогда $\exists n_0: \; x_n<y_n, n>n_0.$
-\end{Theorem}
-\begin{proof}
-
-\end{proof}
-\begin{Corollary}[О стабилизации знака]
-\end{Corollary}
-\begin{Theorem}[Предельный переход в неравенстве]
-Пусть $x_n\leq y_n, n\in\mathbb{N}$ и\\ $x_n\xrightarrow[n\rightarrow\infty]{} a,\; y_n\xrightarrow[n\rightarrow\infty]{} b\;  \Rightarrow \;a\leq b.$
-\end{Theorem}
-\begin{proof}
-
-\end{proof}
-
-\begin{Remark}
-
-\end{Remark}
-
-\begin{Remark}
-
-\end{Remark}
-
-\begin{Theorem}[Теорема о двух милиционерах]
-
-\end{Theorem}
-\begin{proof}
-
-\end{proof}
-
-\subsection{Бесконечно малые последовательности}
-\begin{Definition}
-Последовательность $\{\alpha_n\}$ называется бесконечно малой, если $\alpha_n \rightarrow 0.$ То есть $\exists N: \; \forall n>N \mid\alpha_n\mid<\varepsilon.$
-\end{Definition}
-
-\begin{Theorem}
-Сумма бесконечно малых последовательностей является бесконечно малая последовательность.
-\end{Theorem}
-\begin{proof}
-Смотри %ЗАПИЛИТЬ ССЫЛКУ НА ТЕОРЕМУ 2.1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-\end{proof}
-
-\begin{Theorem}
-Произведение бесконечно малой и ограниченной -- бесконечно малая.
-\end{Theorem}
-\begin{proof}
-Пусть $\{\alpha_n\}$ -- бесконечно малая и $\{x_n\}$ ограниченная. $\{x_n\}$ ограничена, значит $\exists M: \; \mid x_n\mid\leq M, \forall n\in N.$ Из бесконечной малости $\{\alpha_n\}$ следует, что $\forall\varepsilon>0 \; \exists N: \; \forall n>N \; \mid\alpha_n\mid<\frac{\varepsilon}{M},$ то есть $\mid\omega_n\mid=\mid\alpha_n\mid\mid x_n\mid\leq\mid\alpha_n\mid\cdot M<\frac{\varepsilon}{M}\cdot M=\varepsilon \Rightarrow \omega_n\xrightarrow[n\rightarrow\infty]{} 0.$
-\end{proof}
-\subsubsection{Описание сходимости на языке бесконечно малых}
-$x_n \xrightarrow[n\rightarrow\infty]{} a,  \Leftrightarrow \alpha_n=x_n-a$ -- бесконечно малая.
-
-\subsection{Бесконечно большие последовательности}
-
-\subsection{Расширенная числовая прямая}
-$\overline{\mathbb{R}}=\mathbb{R}\cup\{-\infty, +\infty\}$ -- Риманова прямая.
-
-$\forall x\in\mathbb{R} \; -\infty<x<+\infty$
-
-Над $\pm\infty$ выполняют ряд операций (с некоторыми ограничениями).
-
-\subsection{Сходимость монотонной последовательности}
-
-\subsection{Число $e$}
-Рассмотрим последовательность $x_n=\left(1+\frac{1}{n}\right)^n.$
-\begin{eqnarray}
-\nonumber x_n=1+C_n^1\frac{1}{n}+C_n^2\frac{1}{n^2}+\ldots+C_n^n\frac{1}{n^n} = \qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\;\;\;\quad\quad\\ \nonumber
-=1+n\frac{1}{n}+\frac{n(n+1)}{2!}\frac{1}{n^2}+\frac{n(n-1)(n-2)}{3!}\frac{1}{n^3}+\ldots+\frac{n(n-1)\ldots(n-n+1)1}{n!}\frac{1}{n^n}=\\ \nonumber
-=1+1+\frac{1}{2!}\left(1-\frac{1}{n}\right)+\frac{1}{3!}\left(1-\frac{1}{n}\right)\left(1+\frac{2}{n}\right)+\ldots+\frac{1}{n!}\left(1-\frac{1}{n}\right)\ldots\left(1-\frac{n-1}{n}\right).
-\end{eqnarray}
-
-Таким образом $x_n=1+1+\frac{1}{2!}\left(1-\frac{1}{n}\right)+\frac{1}{3!}\left(1-\frac{1}{n}\right)\left(1+\frac{2}{n}\right)+\ldots+\frac{1}{n!}\left(1-\frac{1}{n}\right)\ldots\left(1-\frac{n-1}{n}\right)$\\
-
-
-и $x_{n+1}=1+1+\frac{1}{2!}\left(1-\frac{1}{n+1}\right)+\ldots+\frac{1}{n!}\left(1-\frac{1}{n+1}\right)\ldots\left(1-\frac{n-1}{n+1}\right)+\frac{1}{(n+1)!}\left(1-\frac{1}{n+1}\right)\ldots\left(1-\frac{n}{n+1}\right).$\\
-
-Как видно, переходе от $x_n$ к $x_{n+1}$ все слагаемые увеличиваются$: \; x_{n+1}>x_n.$
-
-$\{x_n\}_{n=1}^{\infty}$ -- возрастает.
-
-$x_n\leq 1+1+\frac{1}{2!}+\frac{1}{3!}+\ldots+\frac{1}{n!}\leq 1+1+\frac{1}{2}+\frac{1}{2^2}+\ldots+\frac{1}{2^{n-1}}\leq 1+2=3.$
-
-Получается, что $x_n$ ограничена сверху тройкой. Тогда по теореме %ЗАПИЛИТЬ ССЫЛКУ НА  ТЕОРЕМУ
-$\{x_n\}$ -- сходится.
-
-\begin{Definition}
-Предел этой последовательности обозначается числом $"e".$
-
-$e=\lim\limits_{n\rightarrow\infty}\left(1+\frac{1}{n}\right)^n \qquad\qquad e\approx 2.71828182459045\ldots$
-\end{Definition}
-
-\subsection{Верхний и нижний предел последовательности}
-\begin{Definition}
-Пусть $\{x_n\}_{n=1}^\infty$ -- ограниченная последовательность, тогда $X_n=\{x_n, x_{n+1},\ldots\}$ -- ограниченное множество.
-
-$y_n=\inf X_n$ -- убывает и ограничена$; \;z_n=\sup X_n.$ -- возрастает и ограничена, значит $y_n$ и $z_n$ сходятся.\\
-$z_n\rightarrow L-\overline{\lim} \;x_n$ -- верхний предел\\
-$y_n\rightarrow l=\underline{\lim} \;x_n$ -- нижний предел.
-\end{Definition}
-
-\begin{Theorem}
-Пусть последовательность $\{x_n\}_{n=1}^\infty$ -- ограничена, тогда последовательность сходится $\Leftrightarrow \; \underline{\lim} x_n=\overline{\lim} x_n.$ В случае сходимости $\lim x_n=\underline{\lim} x_n=\overline{\lim} x_n.$
-\end{Theorem}
-\begin{proof}
-Докажем необходимость. $\Rightarrow:$\\
-Пусть $x_n\xrightarrow[n\rightarrow\infty]{} A,$ тогда $\forall\varepsilon>0\;\exists N: \; \forall n>N\Rightarrow\;\mid x_n-A\mid<\varepsilon,$ иными словами $A-\varepsilon\leq y_n\leq A-\varepsilon\Rightarrow y_n\rightarrow A\leftarrow z_n \; \Rightarrow \; A=\overline{\lim} x_n =\underline{\lim} x_n.$
-
-Докажем достаточность. $\Leftarrow:$
-
-$A=\underline{\lim}x_n=\overline{\lim}x_n.$ Имеет место неравенство$: \; $%КОММУТАТИВНАЯ ДИАГРАММА!!!!!!!!!!!!!!!!!!!!!!!!
-\end{proof}
-\subsection{Принцип выбора Больцано-Вейерштрасса}
-\begin{Theorem}
-Из ограниченной последовательности можно извлечь сходящуюся подпоследовательность. Если $x_n$ -- ограничена то $\exists\{n_k\}$ -- строго монотонно возрастающая, такая, что $\{x_{n_k}\}$ сходится.
-\end{Theorem}
-\begin{proof}
-Построим подпоследовательность, сходящуюся к $L=\overline{\lim\limits_n}x_n.$
-
-$X_n=\{x_n, x_{n+1},\ldots\}.$ Так как последовательность ограничена, то будет существовать $z_n=\sup X_n$ и $z_n\rightarrow L$
-\end{proof}
-\subsection{Критерий Коши}
-\newpage
-
-\begin{center}
-\section{\LARGE{\bf Предел функции}}
-\end{center}
-\epigraph{\textit{Ну а это вы изучите сами дома.}}
-{-- Моисеев А.А.}
-\subsection{Понятие предела функции}
-\begin{Definition}
-Пусть $E\subseteq\mathbb{R}$ и $a\in\mathbb{R}.$ $a$ называется предельной точкой для $E,$ если $\forall\delta>0\;\exists x\in E: \; 0<\mid x-a\mid<\delta.$
-\end{Definition}
-
-Рассмотрим множество на числовой прямой $(a, b)\cup\{c\}.$ Точки $a$ и $b$ -- предельные точки множества. Точка $c$ называется изолированной точкой множества.
-
-%КАРТИНКА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-$a$ предельная, если $\forall O$ окрестности $a \; \exists x\in O\cap E, x\neq a.$
-
-Помимо обычной окрестности точки вводят также определение проколотой окрестности: $\dot{O} = O\setminus\{a\}.$
-
-Таким образом, $a$ предельная точка для $E,$ если $\forall O$ -- окрестности точки $a$ выполнено, что $E\cap\dot{O}\neq\varnothing.$
-
-\subsection{Определение предела функции}
-
-\begin{Definition}
-$E\subseteq\mathbb{R}, a$ -- предельная точка $E, \; f$ -- функция на $\mathbb{E}, A\in\mathbb{R}. \; A$ называется пределом функции $f$ в точке $a, \;f(x)\xrightarrow[x\rightarrow a]{} A; \; A=\lim\limits_{x\rightarrow a} f(x); A=\lim\limits_{a}f,$ если:
-\begin{enumerate}
-\item на языке $\varepsilon$-$\delta:$
-
-$\forall\varepsilon>0 \;\exists\delta>0\;\forall x\in E 0<\mid x-a\mid<\delta \Rightarrow \mid f(x)-A\mid<\varepsilon;$
-
-\item на языке окреcтностей$:$
-
-$\forall O$ окрестности точки $A$ $\exists V$ -- окрестность точки $a: \; f(\dot{V}\cap E \subset O;$
-
-\item на языке последовательностей$:$
-
-$\forall\{x_n\} \; x_n\in E \; x_n\neq a, \; x_n\xrightarrow[n\rightarrow\infty]{} a,  \Rightarrow f(x_n)\xrightarrow[n\rightarrow\infty]{} A.$
-\end{enumerate}
-\end{Definition}
-
-\subparagraph{Пример}
-
-%КАРТИНКА!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-Предел -- локальное понятие. Если $f=g$ в $\dot{O}$ проколотой окрестности точки $a,$ то они имеют пределы и они равны.
-
-\end{document} 
