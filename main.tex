@@ -1,0 +1,114 @@
+\documentclass{article}
+\pagestyle{myheadings}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\normalsize\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\newcommand{\RomanNumeralCaps}[1]
+    {\MakeUppercase{\romannumeral #1}}
+
+\usepackage{amssymb,latexsym}  % Standard packages
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{MnSymbol}
+\usepackage{mathrsfs}
+\usepackage{amsmath,amsthm}
+\usepackage{indentfirst}
+\usepackage{graphicx}%,vmargin}
+\usepackage{epigraph}
+\usepackage[all]{xy} %для XyPic'a
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{tikz}
+
+\newtheorem{Lemma}{Лемма}[section]
+\newtheorem{Proposition}{Предложение}[section]
+\newtheorem{Theorem}{Теорема}[section]
+\newtheorem{Corollary}{Следствие}[section]
+\newtheorem{Remark}{Замечание}[section]
+\newtheorem{Definition}{Определение}[section]
+\newtheorem{Designations}{Обозначение}[section]
+
+
+\usepackage{tocloft}
+\renewcommand{\cfttoctitlefont}{\hspace{0.38\textwidth} \huge\bfseries\MakeUppercase}
+\renewcommand{\cftbeforetoctitleskip}{-1em}
+\renewcommand{\cftaftertoctitle}{\mbox{}\hfill \\ \mbox{}\hfill{\footnotesize Стр.}\vspace{-0.5em}}
+%\renewcommand{\cftchapfont}{\normalsize\bfseries \MakeUppercase{\chaptername} }
+\renewcommand{\cftsecfont}{\hspace{1pt}}
+\renewcommand{\cftsubsecfont}{\hspace{1pt}}
+%\renewcommand{\cftbeforechapskip}{1em}
+\renewcommand{\cftparskip}{3mm} %определяет величину отступа в оглавлении
+\renewcommand{\cftdotsep}{1} %частота точек
+\setcounter{tocdepth}{3}
+
+%%%%%%%Запиливание переопределённого chapter в оглавление%%%%%%
+\makeatletter
+\renewcommand{\@dotsep}{2}
+\newcommand{\l@likechapter}[2]{{\bfseries\@dottedtocline{0}{0pt}{0pt}{#1}{#2}}}
+\makeatother
+\newcommand{\likechapter}[1]{
+\likechapterheading{#1}
+\addcontentsline{toc}{likechapter}{\MakeUppercase{#1}}}
+
+\addtolength{\textwidth}{0.7in}
+\textheight=630pt
+\addtolength{\evensidemargin}{-0.4in}
+\addtolength{\oddsidemargin}{-0.4in}
+\addtolength{\topmargin}{-0.4in}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%главы -- section*%%%%%%
+%%%%section -- subsection%%%%
+%subsection -- subsubsection%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def \newstr {\medskip \par \noindent}
+
+
+
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+\rule[0.5ex]{\linewidth}{2pt}\vspace*{-\baselineskip}\vspace*{3.2pt}
+\rule[0.5ex]{\linewidth}{1pt}\\[\baselineskip]
+{\huge \sc Конспект по математическому}\\[4mm]
+{\huge \sc анализу для первого курса}\\[4mm]
+\rule[0.5ex]{\linewidth}{1pt}\vspace*{-\baselineskip}\vspace{3.2pt}
+\rule[0.5ex]{\linewidth}{2pt}\\
+\vspace{6.5mm}
+
+\vspace{4mm}
+{\large СПбПУ, ИПММ\\
+\smallskip
+\smallskip
+\textsc{Бакалавриат "Математика и CS"}}\\
+
+\vspace{6.5mm}
+{\large\textsc{Лекции Моисеева А. А.}}\\
+\vspace{5mm}
+
+\vspace{20mm}
+
+\end{center}
+\author{Я}
+\begin{center}
+\vfill {\large\textsc{Санкт-Петербург}}\\
+ \today
+\end{center}
+
+\newpage
+\tableofcontents{}
+\include{chapters/1_PD}
+\include{chapters/2_PD}
+\include{chapters/3_TV}
+\include{chapters/4_TV}
+
+\end{document}
